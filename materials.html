@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Методичні Матеріали вчителів</title>
+    <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================
+       Колірна гамма:
+    ======================== */
+    :root{
+      --accent-1: #C3DCF0;
+      --accent-2: #91B9C1;
+      --accent-3: #D8DDE1;
+      --accent-4: #C19569;
+      --dark:     #090401;
+      --muted:    #6b6f74;
+      --glass:    rgba(255,255,255,0.65);
+      --shadow:   0 12px 30px rgba(9,4,1,0.06);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", "Poppins", sans-serif;
+      background: linear-gradient(180deg, #FBFDFF 0%, #F3F7FB 100%);
+      color: var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* container */
+    .container{
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+   
+    /* Hero */
+    .hero{
+      padding:36px 24px;
+      text-align:center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      margin:20px;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(9,4,1,0.06);
+      position:relative;
+    }
+    .hero h2{font-size:2rem;margin:0 0 8px;font-weight:800}
+    .hero p{margin:0;color:var(--muted);font-size:1rem}
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns:  360px 1fr;
+      gap:20px;
+      margin-top:22px;
+      padding:0 20px;
+}
+
+
+    /* Left: files listing */
+    .files {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .group-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:var(--dark);
+      margin:6px 0;
+    }
+    .group-title .dot{
+      width:12px;height:12px;background:linear-gradient(90deg,var(--accent-4),var(--accent-2));border-radius:4px;
+    }
+
+    /* card */
+    .file-card{
+      background: linear-gradient(180deg,#FFFFFF, #FBFBFD);
+      padding:14px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(9,4,1,0.04);
+      border: 1px solid rgba(9,4,1,0.03);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .file-card:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(9,4,1,0.07)}
+    .icon{
+      width:56px;height:56px;border-radius:10px;flex:0 0 56px;display:flex;align-items:center;justify-content:center;font-weight:800;
+      background:linear-gradient(135deg,var(--accent-1),var(--accent-3));
+      color:var(--dark);
+      box-shadow: inset 0 -4px 8px rgba(0,0,0,0.03);
+    }
+    .file-meta{flex:1}
+    .file-meta h3{margin:0;font-size:1rem;font-weight:800}
+    .file-meta p{margin:6px 0 0 0;color:var(--muted);font-size:0.95rem}
+    .file-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:800;text-decoration:none;
+    }
+    .btn-download{
+      background: linear-gradient(90deg,var(--accent-4), var(--accent-2));
+      color:#fff;
+      box-shadow: 0 10px 26px rgba(193,149,105,0.12);
+      font-size:0.95rem;
+    }
+    .btn-secondary{
+      background:transparent;border:1px solid rgba(9,4,1,0.06);color:var(--dark);font-weight:700;padding:8px 10px;border-radius:10px;font-size:0.9rem;
+    }
+    .file-size{font-size:0.85rem;color:var(--muted);margin-top:6px;text-align:right}
+
+    /* Right column (sidebar) */
+    .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start; /* вирівнює sidebar по верху контенту */
+}
+
+    .card{
+      padding:14px;border-radius:12px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(9,4,1,0.03)
+    }
+    .search input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(9,4,1,0.06);font-size:0.95rem}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{padding:6px 10px;border-radius:999px;background:var(--accent-3);font-weight:700;font-size:0.85rem}
+
+    /* footer */
+    footer{
+      margin-top:30px;padding:18px;background: linear-gradient(90deg,var(--accent-2), #E6EEF1);color: var(--dark);border-top-left-radius:14px;border-top-right-radius:14px;text-align:center;
+      box-shadow: 0 -6px 20px rgba(9,4,1,0.03);
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .sidebar{position:static}
+    }
+    @media (max-width:640px){
+      .hero h2{font-size:1.4rem}
+      .icon{width:48px;height:48px;flex:0 0 48px}
+      .file-card{padding:12px}
+      .btn-download{padding:7px 10px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Шкільний портал</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Головна</a></li>
+
+        <!-- Інформація -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інформація</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zagalni_vidomosti.html">Загальні відомості</a></li>
+            <li><a class="dropdown-item" href="teachers.html">Педагогічний колектив</a></li>
+            <li><a class="dropdown-item" href="experiment.html">Експериментальна діяльність школи</a></li>
+            <li><a class="dropdown-item" href="materials.html">Методичні матеріали вчителів</a></li>
+            <li><a class="dropdown-item" href="activity.html">Діяльність закладу</a></li>
+            <li><a class="dropdown-item" href="museum.html">Шкільний музей</a></li>
+            <li><a class="dropdown-item" href="library.html">Шкільна бібліотека</a></li>
+          </ul>
+        </li>
+
+        <!-- Виховна діяльність -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Виховна діяльність</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="vikhovna.html">Виховна робота школи</a></li>
+            <li><a class="dropdown-item" href="pozaklasna.html">Позакласна робота</a></li>
+            <li><a class="dropdown-item" href="samovryaduvannya.html">Самоврядування</a></li>
+            <li><a class="dropdown-item" href="achievements.html">Наші досягнення</a></li>
+            <li><a class="dropdown-item" href="tvorchi.html">Творчі роботи учнів</a></li>
+            <li><a class="dropdown-item" href="projects.html">Міжнародні проекти</a></li>
+          </ul>
+        </li>
+
+        <!-- Безпека -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Безпека</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="buling.html">Протидія та попередження булінгу</a></li>
+            <li><a class="dropdown-item" href="safety.html">Охорона праці</a></li>
+            <li><a class="dropdown-item" href="internet.html">Безпека в Інтернеті</a></li>
+            <li><a class="dropdown-item" href="rules.html">Правила поведінки, які можуть вберегти життя</a></li>
+          </ul>
+        </li>
+
+        <!-- Освітній процес -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Освітній процес</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zno.html">ЗНО / НМТ</a></li>
+            <li><a class="dropdown-item" href="distance.html">Дистанційне навчання</a></li>
+            <li><a class="dropdown-item" href="network.html">Мережа освітнього закладу</a></li>
+            <li><a class="dropdown-item" href="selfedu.html">Самоосвіта</a></li>
+          </ul>
+        </li>
+
+        <!-- Для батьків -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інше</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="parents.html">Інформація для батьків</a></li>
+            <li><a class="dropdown-item" href="graduates.html">Інформація для випускників</a></li>
+            <li><a class="dropdown-item" href="nutrition.html">Харчування учнів ліцею</a></li>
+            <li><a class="dropdown-item" href="psychologist.html">Сторінка психолога</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакти</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- HERO -->
+  <main class="container">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Методичні матеріали вчителів</h2>
+      <p>Добірка уроків, презентацій, додатків та методичних матеріалів, що стосуються шкільної програми та позакласного розвитку. Завантажуйте документи або використовуйте їх як шаблони.</p>
+    </section>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- LEFT: Files -->
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="sidebar" aria-label="Панель інструментів">
+        <div class="card search">
+            <strong>Пошук документів</strong>
+            <input type="text" id="searchInput" placeholder="Введіть назву документа..." />
+        </div>
+        </aside>
+
+
+        <div class="card">
+          <strong>Швидкий доступ</strong>
+          <div class="tags" style="margin-top:10px">
+            <span class="tag">Посібники</span>
+            <span class="tag">Проекти</span>
+            <span class="tag">Додатки</span>
+            <span class="tag">Презентації</span>
+            <span class="tag">Уроки</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>Рекомендація</strong>
+          <p style="color:var(--muted);margin-top:8px;font-size:0.95rem">Використайте структуровані імена файлів, щоб легко відновлювати архіви. Під час публікації на сайті завантажуйте файли у папку /files/ і замінюйте "#" на реальні шляхи.</p>
+        </div>
+      </aside>
+
+    </div> <!-- .grid end -->
+    <!-- Group: Матеріали педагогів -->
+  <div class="files">
+    <div class="files">
+
+<!-- 1 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Позакласний захід "Вміння творити добро!"</h3><p>Автор: Демчишина А.І.</p></div><div class="file-actions"><a class="btn btn-download" href="files/vminnya_tvoryty_dobro.pdf" download>Download "vminnya_tvoryty_dobro.pdf"</a><div class="file-size">3.7 MB</div></div></article>
+
+<!-- 2 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Відкритий урок: "Спільнокореневі слова. Корінь слова"</h3><p>Автор: Демчишина А.І.</p></div><div class="file-actions"><a class="btn btn-download" href="files/spilnokorenevi_slova.pdf" download>Download "spilnokorenevi_slova.pdf"</a><div class="file-size">844.1 KB</div></div></article>
+
+<!-- 3 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Інтерактивні методи навчання в початкових класах</h3><p>Автор: Демчишина А.І.</p></div><div class="file-actions"><a class="btn btn-download" href="files/interaktyvni_metody.pdf" download>Download "interaktyvni_metody.pdf"</a><div class="file-size">226.4 KB</div></div></article>
+
+<!-- 4 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Методичний посібник «Подумай та сплануй…»</h3><p>Автор: Твердохлєбова Т.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/podymai_ta_splanuy.pdf" download>Download "podymai_ta_splanuy.pdf"</a><div class="file-size">3.0 MB</div></div></article>
+
+<!-- 5 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Конспект уроку з літературного читання в 3 класі</h3><p>Автор: Ткачук Н.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/konspekt_3_klas.pdf" download>Download "konspekt_3_klas.pdf"</a><div class="file-size">168.5 KB</div></div></article>
+
+<!-- 6 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Країна, де сходить сонце. Частина 1</h3><p>Автор: Твердохлєбова–Мізяк Т.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/kraina_sontse_1.pdf" download>Download "kraina_sontse_1.pdf"</a><div class="file-size">2.9 MB</div></div></article>
+
+<!-- 7 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Країна, де сходить сонце. Частина 2</h3><p>Автор: Твердохлєбова–Мізяк Т.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/kraina_sontse_2.pdf" download>Download "kraina_sontse_2.pdf"</a><div class="file-size">1.7 MB</div></div></article>
+
+<!-- 8 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Країна, де сходить сонце. Частина 3</h3><p>Автор: Твердохлєбова–Мізяк Т.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/kraina_sontse_3.pdf" download>Download "kraina_sontse_3.pdf"</a><div class="file-size">2.8 MB</div></div></article>
+
+<!-- 9 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Подумай і сплануй (памʼятні дати 2018)</h3><p>Автор: Твердохлєбова–Мізяк Т.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/podymai_splanuy_2018.pdf" download>Download "podymai_splanuy_2018.pdf"</a><div class="file-size">1.3 MB</div></div></article>
+
+<!-- 10 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Змішане навчання. Перевернуте навчання</h3><p>Автор: Твердохлєбова–Мізяк Т.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/perevernutte_navchannya.pdf" download>Download "perevernutte_navchannya.pdf"</a><div class="file-size">1.5 MB</div></div></article>
+
+<!-- 11 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Філологічна майстерня №15</h3><p>Автор: Твердохлєбова–Мізяк Т.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/filologichna_maysternya_15.pdf" download>Download "filologichna_maysternya_15.pdf"</a><div class="file-size">729.7 KB</div></div></article>
+
+<!-- 12 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Завітайте в літературний дворик Японії</h3><p>Автор: Твердохлєбова–Мізяк Т.В.</p></div><div class="file-actions"><a class="btn btn-download" href="files/literaturnyy_dvoryk_yaponii.pdf" download>Download "literaturnyy_dvoryk_yaponii.pdf"</a><div class="file-size">6.9 MB</div></div></article>
+
+<!-- 13 -->
+<article class="file-card"><div class="icon">DOC</div><div class="file-meta"><h3>Урок укр. літератури, 11 клас</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/urok_ukr_lit_11.doc" download>Download "urok_ukr_lit_11.doc"</a><div class="file-size">67.0 KB</div></div></article>
+
+<!-- 14 -->
+<article class="file-card"><div class="icon">PPTX</div><div class="file-meta"><h3>Обласна творча філологічна майстерня №7</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/maysternya_7.pptx" download>Download "maysternya_7.pptx"</a><div class="file-size">255.6 KB</div></div></article>
+
+<!-- 15 -->
+<article class="file-card"><div class="icon">PPT</div><div class="file-meta"><h3>Календарно-обрядові пісні літнього циклу</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/kalendarni_pisni.ppt" download>Download "kalendarni_pisni.ppt"</a><div class="file-size">4.3 MB</div></div></article>
+
+<!-- 16 -->
+<article class="file-card"><div class="icon">PPT</div><div class="file-meta"><h3>Леся Українка</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/lesya_ukrainka.pps" download>Download "lesya_ukrainka.ppt"</a><div class="file-size">1.8 MB</div></div></article>
+
+<!-- 17 -->
+<article class="file-card"><div class="icon">DOCX</div><div class="file-meta"><h3>Іменник</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/imennyk.docx" download>Download "imennyk.docx"</a><div class="file-size">19.5 KB</div></div></article>
+
+<!-- 18 -->
+<article class="file-card"><div class="icon">PPT</div><div class="file-meta"><h3>Узагальнення і систематизація вивченого</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/uzagalnennya.pps" download>Download "uzagalnennya.ppt"</a><div class="file-size">1.8 MB</div></div></article>
+
+<!-- 19 -->
+<article class="file-card"><div class="icon">DOCX</div><div class="file-meta"><h3>Тема про яблуню</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/yablunya.docx" download>Download "yablunya.docx"</a><div class="file-size">29.2 KB</div></div></article>
+
+<!-- 20 -->
+<article class="file-card"><div class="icon">DOCX</div><div class="file-meta"><h3>Тема</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/tema.docx" download>Download "tema.docx"</a><div class="file-size">32.0 KB</div></div></article>
+
+<!-- 21 -->
+<article class="file-card"><div class="icon">PPT</div><div class="file-meta"><h3>Ялинка</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/yalyinka.pps" download>Download "yalyinka.ppt"</a><div class="file-size">1.4 MB</div></div></article>
+
+<!-- 22 -->
+<article class="file-card"><div class="icon">DOCX</div><div class="file-meta"><h3>Інтегрований урок з читання</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/integrovanyi_urok.docx" download>Download "integrovanyi_urok.docx"</a><div class="file-size">25.6 KB</div></div></article>
+
+<!-- 23 -->
+<article class="file-card"><div class="icon">PPTX</div><div class="file-meta"><h3>Калинка</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/kalynka.pptx" download>Download "kalynka.pptx"</a><div class="file-size">4.7 MB</div></div></article>
+
+<!-- 24 -->
+<article class="file-card"><div class="icon">DOC</div><div class="file-meta"><h3>Заняття з п'ятирічками</h3><p>Автор: Карпець Г.П.</p></div><div class="file-actions"><a class="btn btn-download" href="files/zanyattya_5rokiv.doc" download>Download "zanyattya_5rokiv.doc"</a><div class="file-size">84.3 KB</div></div></article>
+
+<!-- 25 -->
+<article class="file-card"><div class="icon">PPTX</div><div class="file-meta"><h3>Урок-проєкт 4 клас</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/urok_proekt_4.pptx" download>Download "urok_proekt_4.pptx"</a><div class="file-size">2.1 MB</div></div></article>
+
+<!-- 26 -->
+<article class="file-card"><div class="icon">PPTX</div><div class="file-meta"><h3>Одночлени</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/odnochleny.pptx" download>Download "odnochleny.pptx"</a><div class="file-size">354.0 KB</div></div></article>
+
+<!-- 27 -->
+<article class="file-card"><div class="icon">PPT</div><div class="file-meta"><h3>Тіла обертання поряд з нами</h3><p>Microsoft PowerPoint</p></div><div class="file-actions"><a class="btn btn-download" href="files/tila_obertannya.pps" download>Download "tila_obertannya.ppt"</a><div class="file-size">2.6 MB</div></div></article>
+
+<!-- 28 -->
+<article class="file-card"><div class="icon">DOC</div><div class="file-meta"><h3>Відкритий урок з інформатики: "Проектування орнаменту"</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/vdkryte_zanyattya.doc" download>Download "vdkryte_zanyattya.doc"</a><div class="file-size">47.5 KB</div></div></article>
+
+<!-- 29 -->
+<article class="file-card"><div class="icon">DOC</div><div class="file-meta"><h3>Правовий турнір</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/pravovyi_turnir.doc" download>Download "pravovyi_turnir.doc"</a><div class="file-size">29.5 KB</div></div></article>
+
+<!-- 30 -->
+<article class="file-card"><div class="icon">DOC</div><div class="file-meta"><h3>Верховна Рада України — Тема уроку</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/verhovna_rada_urok.doc" download>Download "verhovna_rada_urok.doc"</a><div class="file-size">53.5 KB</div></div></article>
+
+<!-- 31 -->
+<article class="file-card"><div class="icon">DOC</div><div class="file-meta"><h3>Урок-дослідження з хімії 11 клас</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/himia_urok.doc" download>Download "himia_urok.doc"</a><div class="file-size">24.0 KB</div></div></article>
+
+<!-- 32 -->
+<article class="file-card"><div class="icon">DOC</div><div class="file-meta"><h3>Уроки з англійської мови для учнів 11 класу</h3><p>Microsoft Word Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/uroky_angl_11.doc" download>Download "uroky_angl_11.doc"</a><div class="file-size">3.3 MB</div></div></article>
+
+</div>
+
+  </div>
+
+
+
+  </main>
+
+  <footer>
+    © 2025 Широківський ліцей №2. Усі права захищені.
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const fileCards = document.querySelectorAll('.file-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      fileCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

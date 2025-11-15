@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Експериментальна Діяльність Школи та Моніторинг Успішності Учнів</title>
+    <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================
+       Колірна гамма:
+    ======================== */
+    :root{
+      --accent-1: #C3DCF0;
+      --accent-2: #91B9C1;
+      --accent-3: #D8DDE1;
+      --accent-4: #C19569;
+      --dark:     #090401;
+      --muted:    #6b6f74;
+      --glass:    rgba(255,255,255,0.65);
+      --shadow:   0 12px 30px rgba(9,4,1,0.06);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", "Poppins", sans-serif;
+      background: linear-gradient(180deg, #FBFDFF 0%, #F3F7FB 100%);
+      color: var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* container */
+    .container{
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+   
+    /* Hero */
+    .hero{
+      padding:36px 24px;
+      text-align:center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      margin:20px;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(9,4,1,0.06);
+      position:relative;
+    }
+    .hero h2{font-size:2rem;margin:0 0 8px;font-weight:800}
+    .hero p{margin:0;color:var(--muted);font-size:1rem}
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns:  360px 1fr;
+      gap:20px;
+      margin-top:22px;
+      padding:0 20px;
+    }
+
+    /* Left: files listing */
+    .files {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .group-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:var(--dark);
+      margin:6px 0;
+    }
+    .group-title .dot{
+      width:12px;height:12px;background:linear-gradient(90deg,var(--accent-4),var(--accent-2));border-radius:4px;
+    }
+
+    /* card */
+    .file-card{
+      background: linear-gradient(180deg,#FFFFFF, #FBFBFD);
+      padding:14px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(9,4,1,0.04);
+      border: 1px solid rgba(9,4,1,0.03);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .file-card:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(9,4,1,0.07)}
+    .icon{
+      width:56px;height:56px;border-radius:10px;flex:0 0 56px;display:flex;align-items:center;justify-content:center;font-weight:800;
+      background:linear-gradient(135deg,var(--accent-1),var(--accent-3));
+      color:var(--dark);
+      box-shadow: inset 0 -4px 8px rgba(0,0,0,0.03);
+    }
+    .file-meta{flex:1}
+    .file-meta h3{margin:0;font-size:1rem;font-weight:800}
+    .file-meta p{margin:6px 0 0 0;color:var(--muted);font-size:0.95rem}
+    .file-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:800;text-decoration:none;
+    }
+    .btn-download{
+      background: linear-gradient(90deg,var(--accent-4), var(--accent-2));
+      color:#fff;
+      box-shadow: 0 10px 26px rgba(193,149,105,0.12);
+      font-size:0.95rem;
+    }
+    .btn-secondary{
+      background:transparent;border:1px solid rgba(9,4,1,0.06);color:var(--dark);font-weight:700;padding:8px 10px;border-radius:10px;font-size:0.9rem;
+    }
+    .file-size{font-size:0.85rem;color:var(--muted);margin-top:6px;text-align:right}
+
+    /* Right column (sidebar) */
+    .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start; /* вирівнює sidebar по верху контенту */
+}
+
+    .card{
+      padding:14px;border-radius:12px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(9,4,1,0.03)
+    }
+    .search input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(9,4,1,0.06);font-size:0.95rem}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{padding:6px 10px;border-radius:999px;background:var(--accent-3);font-weight:700;font-size:0.85rem}
+
+    /* footer */
+    footer{
+      margin-top:30px;padding:18px;background: linear-gradient(90deg,var(--accent-2), #E6EEF1);color: var(--dark);border-top-left-radius:14px;border-top-right-radius:14px;text-align:center;
+      box-shadow: 0 -6px 20px rgba(9,4,1,0.03);
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .sidebar{position:static}
+    }
+    @media (max-width:640px){
+      .hero h2{font-size:1.4rem}
+      .icon{width:48px;height:48px;flex:0 0 48px}
+      .file-card{padding:12px}
+      .btn-download{padding:7px 10px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Шкільний портал</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Головна</a></li>
+
+        <!-- Інформація -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інформація</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zagalni_vidomosti.html">Загальні відомості</a></li>
+            <li><a class="dropdown-item" href="teachers.html">Педагогічний колектив</a></li>
+            <li><a class="dropdown-item" href="method.html">Методична робота</a></li>
+            <li><a class="dropdown-item" href="experiment.html">Експериментальна діяльність школи</a></li>
+            <li><a class="dropdown-item" href="materials.html">Методичні матеріали вчителів</a></li>
+            <li><a class="dropdown-item" href="activity.html">Діяльність закладу</a></li>
+            <li><a class="dropdown-item" href="museum.html">Шкільний музей</a></li>
+            <li><a class="dropdown-item" href="library.html">Шкільна бібліотека</a></li>
+          </ul>
+        </li>
+
+        <!-- Виховна діяльність -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Виховна діяльність</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="vikhovna.html">Виховна робота школи</a></li>
+            <li><a class="dropdown-item" href="pozaklasna.html">Позакласна робота</a></li>
+            <li><a class="dropdown-item" href="samovryaduvannya.html">Самоврядування</a></li>
+            <li><a class="dropdown-item" href="achievements.html">Наші досягнення</a></li>
+            <li><a class="dropdown-item" href="tvorchi.html">Творчі роботи учнів</a></li>
+            <li><a class="dropdown-item" href="projects.html">Міжнародні проекти</a></li>
+          </ul>
+        </li>
+
+        <!-- Безпека -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Безпека</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="buling.html">Протидія та попередження булінгу</a></li>
+            <li><a class="dropdown-item" href="safety.html">Охорона праці</a></li>
+            <li><a class="dropdown-item" href="internet.html">Безпека в Інтернеті</a></li>
+            <li><a class="dropdown-item" href="rules.html">Правила поведінки, які можуть вберегти життя</a></li>
+          </ul>
+        </li>
+
+        <!-- Освітній процес -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Освітній процес</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zno.html">ЗНО / НМТ</a></li>
+            <li><a class="dropdown-item" href="distance.html">Дистанційне навчання</a></li>
+            <li><a class="dropdown-item" href="network.html">Мережа освітнього закладу</a></li>
+            <li><a class="dropdown-item" href="selfedu.html">Самоосвіта</a></li>
+          </ul>
+        </li>
+
+        <!-- Для батьків -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Для батьків</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="parents.html">Інформація для батьків</a></li>
+            <li><a class="dropdown-item" href="graduates.html">Інформація для випускників</a></li>
+            <li><a class="dropdown-item" href="nutrition.html">Харчування учнів ліцею</a></li>
+            <li><a class="dropdown-item" href="psychologist.html">Сторінка психолога</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакти</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- HERO -->
+  <main class="container">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Експериментальна діяльність школи</h2>
+      <p>Добірка планів, звітів, додатків та методичних матеріалів, що стосуються експериментальної діяльності та сталого розвитку. Завантажуйте документи або використовуйте їх як шаблони.</p>
+    </section>
+
+    <!-- GRID -->
+    <div class="grid">
+
+
+
+      <!-- RIGHT: Sidebar -->
+      <div> 
+        <aside class="sidebar" aria-label="Панель інструментів">
+          <div class="card search">
+            <strong>Пошук документів</strong>
+            <input type="text" id="searchInput" placeholder="Введіть назву документа..." />
+          </div>
+        </aside>
+
+
+        <div class="card">
+          <strong>Швидкий доступ</strong>
+          <div class="tags" style="margin-top:10px">
+            <span class="tag">Плани</span>
+            <span class="tag">Звіти</span>
+            <span class="tag">Додатки</span>
+            <span class="tag">Екологія</span>
+            <span class="tag">Уроки</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>Рекомендація</strong>
+          <p style="color:var(--muted);margin-top:8px;font-size:0.95rem">Використайте структуровані імена файлів, щоб легко відновлювати архіви. Під час публікації на сайті завантажуйте файли у папку /files/ і замінюйте "#" на реальні шляхи.</p>
+        </div>
+
+      </div>
+
+
+      <!-- LEFT: Files -->
+      <div>
+
+          <!-- Group: Monitoring -->
+          <div class="files">
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Моніторинг Успішності Учнів</div>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Моніторинг якості освіти</h3>
+
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/monitoring.pdf" download>Download "monitoring.pdf"</a>
+                  <div class="file-size">499.0 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Звітність щодо навчання учнів Широківської СЗШ №2 І-ІІІ ст. за підсумками 2016 - 2017 н.р. у графіках</h3>
+                    <p>Звітність щодо навчання за рік.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/zvit_graph.pdf" download>Download "zvit_graph.pdf"</a>
+                  <div class="file-size">550.0 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Звітність щодо навчання учнів Широківської СЗШ №2 І-ІІІ ст. за підсумками 2016 - 2017 н.р. у графіках</h3>
+                  <p>звіти в райво за І сем 2016-2017 н.р.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/zvitnist.pdf" download>Download "plan_dekady_feb2018.pdf"</a>
+                  <div class="file-size">197.4 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Моніторинг за І семестр 2015-2016 н.р.</h3>
+                  
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/mon_1sem.pdf" download>Download "mon_1sem.pdf"</a>
+                  <div class="file-size">191.9 KB</div>
+                </div>
+              </article>
+            </div>
+
+          <!-- Group: Плани -->
+          <div class="files">
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Плани</div>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>План проведення декади сталого розвитку в Широківській школі №2 (25.02–05.03.2019)</h3>
+                  <p>План проведення декади сталого розвитку — детальна програма для учнів 5-11 класів.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/plan_dekady_2019.pdf" download>Download "plan_dekady_2019.pdf"</a>
+                  <div class="file-size">138.1 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>ПЛАН декади сталого розвитку (12-16 лютого 2018)</h3>
+                  <p>Короткий план заходів декади 2018 року.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/plan_dekady_feb2018.pdf" download>Download "plan_dekady_feb2018.pdf"</a>
+                  <div class="file-size">145.5 KB</div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Group: Звіти -->
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Звіти</div>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Звіт про підсумки роботи на ІІІ етапі проекту (2017–2018)</h3>
+                  <p>Повний звіт про результати третього етапу експерименту.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/report_stage3_2017-2018.pdf" download>Download "report_stage3_2017-2018.pdf"</a>
+                  <div class="file-size">459.1 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Звіт про підсумки роботи на ІІ етапі проекту (2016–2017)</h3>
+                  <p>Підсумковий звіт за другий етап експериментальної діяльності.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/report_stage2_2016-2017.pdf" download>Download "report_stage2_2016-2017.pdf"</a>
+                  <div class="file-size">427.2 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Звіт про підсумки роботи на I етапі проекту (2015–2016)</h3>
+                  <p>Архівний звіт першого етапу експерименту.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/report_stage1_2015-2016.pdf" download>Download "report_stage1_2015-2016.pdf"</a>
+                  <div class="file-size">528.0 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Звіт по Випереджаючій освіті (2015)</h3>
+                  <p>Документ та додатки по випереджаючій освіті.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/report_ahead_education_2015.pdf" download>Download "report_ahead_education_2015.pdf"</a>
+                  <div class="file-size">1.2 MB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>ЗВІТ 2015</h3>
+                  <p>Звіт 2015 року (архів).</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/zvit_2015.pdf" download>Download "zvit_2015.pdf"</a>
+                  <div class="file-size">627.2 KB</div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Group: Додатки -->
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Додатки</div>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Додатки 1–4 до звіту</h3>
+                  <p>Матеріали та таблиці (Додатки 1–4).</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/dod1-4_report.pdf" download>Download "dod1-4_report.pdf"</a>
+                  <div class="file-size">1.7 MB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Додатки 5–6 до звіту</h3>
+                  <p>Додаткові матеріали до звіту.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/dod5-6_report.pdf" download>Download "dod5-6_report.pdf"</a>
+                  <div class="file-size">364.6 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Додатки (архів)</h3>
+                  <p>Різні додаткові матеріали.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/dodattky_general.pdf" download>Download "dodattky_general.pdf"</a>
+                  <div class="file-size">590.0 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Додатки 1–11 (Звіт)</h3>
+                  <p>Набір додатків до звіту (2015).</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/dod_1-11_2015.pdf" download>Download "dod_1-11_2015.pdf"</a>
+                  <div class="file-size">1.2 MB</div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Group: Екологія / Акції / Заходи -->
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Екологічні акції та сценарії</div>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Екологічна Акція "Сортуємо сміття — збережемо природу" (укр / англ)</h3>
+                  <p>Опис акції та матеріали (англійською частково).</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/eco_action_sortujeme_smittya.pdf" download>Download "eco_action_sortujeme_smittya.pdf"</a>
+                  <div class="file-size">1.1 MB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOC</div>
+                <div class="file-meta">
+                  <h3>Сценарій позакласного заходу "Вода — джерело життя"</h3>
+                  <p>Сценарій заходу для позакласної роботи.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/scenario_voda_dzherelo_zhyttya.docx" download>Download "scenario_voda_dzherelo_zhyttya.docx"</a>
+                  <div class="file-size">233.1 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Захист проектів в День Землі</h3>
+                  <p>Матеріали та презентації для захисту проектів.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/zakhyst_proektiv_den_zemli.pdf" download>Download "zakhyst_proektiv_den_zemli.pdf"</a>
+                  <div class="file-size">690.9 KB</div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Group: Методичні матеріали / Досвід роботи -->
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Досвід роботи та методичні матеріали</div>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Досвід роботи Ткачук Н.В.</h3>
+                  <p>Опис методичної практики Ткачук Н.В.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/tkachuk_experience.docx" download>Download "tkachuk_experience.docx"</a>
+                  <div class="file-size">—</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Досвід роботи Демчишина А.І.</h3>
+                  <p>Методичні напрацювання Демчишиної А.І.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/demchyshyna_experience.docx" download>Download "demchyshyna_experience.docx"</a>
+                  <div class="file-size">—</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Досвід роботи Карпець Г.П. (кілька файлів)</h3>
+                  <p>Карпець Г.П. — досвід, родинне свято, урок по Сухомлинському.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/karpets_experience_1.docx" download>Download "karpets_experience_1.docx"</a>
+                  <div class="file-size">34.4 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Карпець Г.П. Родинне свято (docx)</h3>
+                  <p>Матеріали до родинного свята.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/karpets_rodynne_svyato.docx" download>Download "karpets_rodynne_svyato.docx"</a>
+                  <div class="file-size">258.7 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Карпець Г.П. Урок по Сухомлинському</h3>
+                  <p>Сценарій уроку.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/karpets_urok_sukhomlynskomu.docx" download>Download "karpets_urok_sukhomlynskomu.docx"</a>
+                  <div class="file-size">23.5 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Карпець Г.П. Тренінг "Основи здоров'я"</h3>
+                  <p>Тренінгові матеріали з фізичного виховання/здоров'я.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/karpets_trening_osnovy_zdor.docx" download>Download "karpets_trening_osnovy_zdor.docx"</a>
+                  <div class="file-size">50.3 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Anenko L.G. (Аненко Л.Г.)</h3>
+                  <p>Документ — досвід / матеріали.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/anenko_lg.docx" download>Download "anenko_lg.docx"</a>
+                  <div class="file-size">122.2 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>РЕЦЕНЗІЯ</h3>
+                  <p>Рецензія (короткий документ).</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/recenzia.docx" download>Download "recenzia.docx"</a>
+                  <div class="file-size">14.0 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Анотація</h3>
+                  <p>Коротка анотація — ініціатива/проект.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/anotacia.docx" download>Download "anotacia.docx"</a>
+                  <div class="file-size">11.1 KB</div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Group: Навчальні матеріали та збірники -->
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Навчальні матеріали</div>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Збірник пізнавальних завдань з української мови</h3>
+                  <p>Збірник завдань для уроків української мови — практичні вправи.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/zb_rnik_piznavalnyh_zavdan_ukr_mova.pdf" download>Download "zb_rnik_piznavalnyh_zavdan_ukr_mova.pdf"</a>
+                  <div class="file-size">3.1 MB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Ігри для сталого розвитку учням початкових класів</h3>
+                  <p>Набір ігор для формування компетентностей у молодших школярів.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/games_sustainable_dev_primary.pdf" download>Download "games_sustainable_dev_primary.pdf"</a>
+                  <div class="file-size">2.3 MB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Формування екологічної компетентності учнів початкових класів</h3>
+                  <p>Методичний матеріал для уроків рідної мови та природознавства.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/formuvannya_ekol_kompetentnosti.pdf" download>Download "formuvannya_ekol_kompetentnosti.pdf"</a>
+                  <div class="file-size">5.7 MB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Збірник "Соціальні проекти випереджаючої освіти для сталого розвитку"</h3>
+                  <p>Опис соціальних проектів та інструкції для реалізації.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/social_projects_sustainable.pdf" download>Download "social_projects_sustainable.pdf"</a>
+                  <div class="file-size">200.5 KB</div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Group: Класні проекти / матеріали -->
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Класні проекти / уроки</div>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>KLASNI_PROEKTI.PDF</h3>
+                  <p>Колекція класних проєктів — ідеї та реалізація.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/klasni_proekti_1.pdf" download>Download "klasni_proekti_1.pdf"</a>
+                  <div class="file-size">598.6 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>KLASNI_PROEKTI_1.PDF</h3>
+                  <p>Додаткові проекти та навчальні приклади.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/klasni_proekti_2.pdf" download>Download "klasni_proekti_2.pdf"</a>
+                  <div class="file-size">724.2 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Екологія_Гончар.PDF (Гончар І.В.)</h3>
+                  <p>Матеріали з екології від Гончар І.В.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/ekologiya_honchar.pdf" download>Download "ekologiya_honchar.pdf"</a>
+                  <div class="file-size">1.4 MB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">PDF</div>
+                <div class="file-meta">
+                  <h3>Здорово — коли здоровий...</h3>
+                  <p>Матеріали на тему здоров'я учнів.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/zdorovo_koly_zdorovyy.pdf" download>Download "zdorovo_koly_zdorovyy.pdf"</a>
+                  <div class="file-size">289.7 KB</div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Group: Уроки (файли) -->
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Уроки (файли .doc/.docx)</div>
+
+              <article class="file-card">
+                <div class="icon">DOC</div>
+                <div class="file-meta">
+                  <h3>Урок1.docx</h3>
+                  <p>Матеріал для уроку №1.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/urok1.docx" download>Download "urok1.docx"</a>
+                  <div class="file-size">603.2 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOC</div>
+                <div class="file-meta">
+                  <h3>Урок2.doc</h3>
+                  <p>Матеріали для уроку №2.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/urok2.doc" download>Download "urok2.doc"</a>
+                  <div class="file-size">454.0 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOC</div>
+                <div class="file-meta">
+                  <h3>Урок3.doc</h3>
+                  <p>Матеріал для уроку №3.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/urok3.doc" download>Download "urok3.doc"</a>
+                  <div class="file-size">294.0 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Урок 4.docx</h3>
+                  <p>Матеріал для уроку №4.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/urok4.docx" download>Download "urok4.docx"</a>
+                  <div class="file-size">33.2 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOC</div>
+                <div class="file-meta">
+                  <h3>Урок 5.doc</h3>
+                  <p>Матеріал для уроку №5.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/urok5.doc" download>Download "urok5.doc"</a>
+                  <div class="file-size">64.0 KB</div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Group: Інші документи (інформація участі, накази, зображення) -->
+            <div class="group">
+              <div class="group-title"><span class="dot"></span>Інші документи</div>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Інформація про хід реалізації дослідно -</h3>
+                  <p>Коротка інформація про хід реалізації експерименту.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/info_hid_realizacii.docx" download>Download "info_hid_realizacii.docx"</a>
+                  <div class="file-size">13.8 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Інформація про участь в експериментальні (1)</h3>
+                  <p>Довідкова інформація про участь у дослідженні.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/info_participation_1.docx" download>Download "info_participation_1.docx"</a>
+                  <div class="file-size">127.5 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Інформація про участь в експериментальні (2)</h3>
+                  <p>Додаткова інформація про участь у проекті.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/info_participation_2.docx" download>Download "info_participation_2.docx"</a>
+                  <div class="file-size">137.5 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">JPG</div>
+                <div class="file-meta">
+                  <h3>наказ.jpg</h3>
+                  <p>Скан наказу — зображення.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/nakaz_1.jpg" download>Download "nakaz_1.jpg"</a>
+                  <div class="file-size">329.1 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">JPG</div>
+                <div class="file-meta">
+                  <h3>наказ 2.jpg</h3>
+                  <p>Другий скан наказу.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/nakaz_2.jpg" download>Download "nakaz_2.jpg"</a>
+                  <div class="file-size">299.0 KB</div>
+                </div>
+              </article>
+
+              <article class="file-card">
+                <div class="icon">DOCX</div>
+                <div class="file-meta">
+                  <h3>Екологічна освіта молодших школярів (docx)</h3>
+                  <p>Матеріали з екологічної освіти для молодших школярів.</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-download" href="files/ekol_oshkoli_molodshi.docx" download>Download "ekol_oshkoli_molodshi.docx"</a>
+                  <div class="file-size">81.8 KB</div>
+                </div>
+              </article>
+
+            </div>
+
+          </div> <!-- .files end -->
+        </div>
+
+          
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2025 Широківська школа №2. Усі права захищені.
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const fileCards = document.querySelectorAll('.file-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      fileCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

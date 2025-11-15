@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Методичні Матеріали вчителів</title>
+    <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================
+       Колірна гамма:
+    ======================== */
+    :root{
+      --accent-1: #C3DCF0;
+      --accent-2: #91B9C1;
+      --accent-3: #D8DDE1;
+      --accent-4: #C19569;
+      --dark:     #090401;
+      --muted:    #6b6f74;
+      --glass:    rgba(255,255,255,0.65);
+      --shadow:   0 12px 30px rgba(9,4,1,0.06);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", "Poppins", sans-serif;
+      background: linear-gradient(180deg, #FBFDFF 0%, #F3F7FB 100%);
+      color: var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* container */
+    .container{
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+   
+    /* Hero */
+    .hero{
+      padding:36px 24px;
+      text-align:center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      margin:20px;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(9,4,1,0.06);
+      position:relative;
+    }
+    .hero h2{font-size:2rem;margin:0 0 8px;font-weight:800}
+    .hero p{margin:0;color:var(--muted);font-size:1rem}
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns:  360px 1fr;
+      gap:20px;
+      margin-top:22px;
+      padding:0 20px;
+}
+
+
+    /* Left: files listing */
+    .files {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .group-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:var(--dark);
+      margin:6px 0;
+    }
+    .group-title .dot{
+      width:12px;height:12px;background:linear-gradient(90deg,var(--accent-4),var(--accent-2));border-radius:4px;
+    }
+
+    /* card */
+    .file-card{
+      background: linear-gradient(180deg,#FFFFFF, #FBFBFD);
+      padding:14px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(9,4,1,0.04);
+      border: 1px solid rgba(9,4,1,0.03);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .file-card:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(9,4,1,0.07)}
+    .icon{
+      width:56px;height:56px;border-radius:10px;flex:0 0 56px;display:flex;align-items:center;justify-content:center;font-weight:800;
+      background:linear-gradient(135deg,var(--accent-1),var(--accent-3));
+      color:var(--dark);
+      box-shadow: inset 0 -4px 8px rgba(0,0,0,0.03);
+    }
+    .file-meta{flex:1}
+    .file-meta h3{margin:0;font-size:1rem;font-weight:800}
+    .file-meta p{margin:6px 0 0 0;color:var(--muted);font-size:0.95rem}
+    .file-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:800;text-decoration:none;
+    }
+    .btn-download{
+      background: linear-gradient(90deg,var(--accent-4), var(--accent-2));
+      color:#fff;
+      box-shadow: 0 10px 26px rgba(193,149,105,0.12);
+      font-size:0.95rem;
+    }
+    .btn-secondary{
+      background:transparent;border:1px solid rgba(9,4,1,0.06);color:var(--dark);font-weight:700;padding:8px 10px;border-radius:10px;font-size:0.9rem;
+    }
+    .file-size{font-size:0.85rem;color:var(--muted);margin-top:6px;text-align:right}
+
+    /* Right column (sidebar) */
+    .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start; /* вирівнює sidebar по верху контенту */
+}
+
+    .card{
+      padding:14px;border-radius:12px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(9,4,1,0.03)
+    }
+    .search input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(9,4,1,0.06);font-size:0.95rem}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{padding:6px 10px;border-radius:999px;background:var(--accent-3);font-weight:700;font-size:0.85rem}
+
+    /* footer */
+    footer{
+      margin-top:30px;padding:18px;background: linear-gradient(90deg,var(--accent-2), #E6EEF1);color: var(--dark);border-top-left-radius:14px;border-top-right-radius:14px;text-align:center;
+      box-shadow: 0 -6px 20px rgba(9,4,1,0.03);
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .sidebar{position:static}
+    }
+    @media (max-width:640px){
+      .hero h2{font-size:1.4rem}
+      .icon{width:48px;height:48px;flex:0 0 48px}
+      .file-card{padding:12px}
+      .btn-download{padding:7px 10px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Шкільний портал</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Головна</a></li>
+
+        <!-- Інформація -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інформація</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zagalni_vidomosti.html">Загальні відомості</a></li>
+            <li><a class="dropdown-item" href="teachers.html">Педагогічний колектив</a></li>
+            <li><a class="dropdown-item" href="experiment.html">Експериментальна діяльність школи</a></li>
+            <li><a class="dropdown-item" href="materials.html">Методичні матеріали вчителів</a></li>
+            <li><a class="dropdown-item" href="activity.html">Діяльність закладу</a></li>
+            <li><a class="dropdown-item" href="museum.html">Шкільний музей</a></li>
+            <li><a class="dropdown-item" href="library.html">Шкільна бібліотека</a></li>
+          </ul>
+        </li>
+
+        <!-- Виховна діяльність -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Виховна діяльність</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="vikhovna.html">Виховна робота школи</a></li>
+            <li><a class="dropdown-item" href="pozaklasna.html">Позакласна робота</a></li>
+            <li><a class="dropdown-item" href="samovryaduvannya.html">Самоврядування</a></li>
+            <li><a class="dropdown-item" href="achievements.html">Наші досягнення</a></li>
+            <li><a class="dropdown-item" href="tvorchi.html">Творчі роботи учнів</a></li>
+            <li><a class="dropdown-item" href="projects.html">Міжнародні проекти</a></li>
+          </ul>
+        </li>
+
+        <!-- Безпека -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Безпека</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="buling.html">Протидія та попередження булінгу</a></li>
+            <li><a class="dropdown-item" href="safety.html">Охорона праці</a></li>
+            <li><a class="dropdown-item" href="internet.html">Безпека в Інтернеті</a></li>
+            <li><a class="dropdown-item" href="rules.html">Правила поведінки, які можуть вберегти життя</a></li>
+          </ul>
+        </li>
+
+        <!-- Освітній процес -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Освітній процес</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zno.html">ЗНО / НМТ</a></li>
+            <li><a class="dropdown-item" href="distance.html">Дистанційне навчання</a></li>
+            <li><a class="dropdown-item" href="network.html">Мережа освітнього закладу</a></li>
+            <li><a class="dropdown-item" href="selfedu.html">Самоосвіта</a></li>
+          </ul>
+        </li>
+
+        <!-- Для батьків -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інше</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="parents.html">Інформація для батьків</a></li>
+            <li><a class="dropdown-item" href="graduates.html">Інформація для випускників</a></li>
+            <li><a class="dropdown-item" href="nutrition.html">Харчування учнів ліцею</a></li>
+            <li><a class="dropdown-item" href="psychologist.html">Сторінка психолога</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакти</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- HERO -->
+  <main class="container">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Протидія Блінгу</h2>
+      <p>Матеріали для батьків та учнів щодо булінгу.</p>
+    </section>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- LEFT: Files -->
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="sidebar" aria-label="Панель інструментів">
+        <div class="card search">
+            <strong>Пошук документів</strong>
+            <input type="text" id="searchInput" placeholder="Введіть назву документа..." />
+        </div>
+        </aside>
+
+
+        <div class="card">
+          <strong>Швидкий доступ</strong>
+          <div class="tags" style="margin-top:10px">
+            <span class="tag">Посібники</span>
+            <span class="tag">Мережа</span>
+            <span class="tag">Додатки</span>
+            <span class="tag">Презентації</span>
+            <span class="tag">Уроки</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>Рекомендація</strong>
+          <p style="color:var(--muted);margin-top:8px;font-size:0.95rem">Використайте структуровані імена файлів, щоб легко відновлювати архіви. Під час публікації на сайті завантажуйте файли у папку /files/ і замінюйте "#" на реальні шляхи.</p>
+        </div>
+      </aside>
+      <section class="library-page">
+
+    <h2>Матеріали шкільної бібліотеки та протоколи педагогічної ради</h2>
+
+    <p>
+        ПРОБЛЕМА БІБЛІОТЕКИ : «Популяризація української книги, виховання в учнів культури читання та
+        бережливого ставлення до книги».
+    </p>
+
+    <p>
+        Основними напрямками роботи бібліотеки є:
+        інформаційна діяльність, заняття з основ бібліотечно-бібліографічних знань, 
+        співпраця з навчальною комісією шкільного парламенту, культурно-просвітницька підтримка 
+        освітнього процесу, вивчення та розвиток читацьких інтересів, популяризація української книги.
+    </p>
+
+    <p>
+        Основне завдання бібліотеки — виховання в учнів інформаційної культури, культури читання 
+        та бережливого ставлення до книги; надання методичної допомоги педагогам, учням, батькам.
+    </p>
+
+    <p>
+        Основні функції бібліотеки: інформаційна, навчальна, культурологічна, розвиваюча, пізнавальна, 
+        навчально-збагачувальна та виховна.
+    </p>
+
+    <h3>Цікаві факти про книгу</h3>
+
+    <p>
+        КНИГА — символ всесвіту, мудрості та знань. У Стародавньому Китаї вона вважалася священною річчю, 
+        здатною відганяти злих духів. У християнстві книги символізують апостолів, які несуть світло істини.
+        Біблія, Коран, Тора та Кабала вважаються книгами книг у світовій культурі.
+    </p>
+
+    <h3>Поради шкільного бібліотекаря</h3>
+
+    <p><strong>Бережи книгу!</strong></p>
+
+    <ul>
+        <li>Носи книги в папці або обгорнутими папером.</li>
+        <li>Зберігай їх на спеціальній полиці.</li>
+        <li>Читай із чистими руками.</li>
+        <li>Перегортай сторінки акуратно, за верхній правий куток.</li>
+        <li>Використовуй закладки.</li>
+        <li>Поверни книгу вчасно — її чекають інші учні.</li>
+        <li>Підклеюй порвані сторінки.</li>
+    </ul>
+
+    <p><strong>Не можна:</strong></p>
+    <ul>
+        <li>перегинати книгу;</li>
+        <li>робити записи в тексті;</li>
+        <li>використовувати ручки чи лінійки замість закладок.</li>
+    </ul>
+
+    <h3>Книга — вікно у світ</h3>
+
+    <p>
+        Книга — це друг, який завжди поруч, коли ти цього потребуєш. Вона піднімає настрій, 
+        дарує мудрі поради, заспокоює в скрутні часи та відкриває нові горизонти.
+    </p>
+
+    <h3>Екскурс у минуле</h3>
+
+    <p>
+        У Стародавньому Єгипті за втрату бібліотечного сувою карали стратою. 
+        У Пруссії за крадіжку книги — понад 20 років ув’язнення. 
+        У Лондоні за загинання куточків сторінок карали різками та ув’язненням на 7 років. 
+        В Оксфорді книги видавали додому лише монархам.
+    </p>
+
+    <h3>Казкова ігротека</h3>
+
+    <p>
+        Казка — це мудрість народу. Вона живе століттями, навчає, розважає та виховує.
+        Пропонуємо дітям ігри, які допомагають краще пізнати казковий світ.
+    </p>
+
+    <h4>Гра «Так чи ні?»</h4>
+    <p>Приклади казкових помилок, які діти мають виправити.</p>
+
+    <h4>Гра «Казки навпаки»</h4>
+    <p>Перевернуті сюжети, де ролі добра і зла міняються місцями.</p>
+
+    <h4>Гра «Салат із казок»</h4>
+    <p>Змішані частини різних казок — дітей просять упізнати їх.</p>
+
+    <hr>
+
+    <h2>Документи та протоколи педагогічної ради</h2>
+
+    <p>
+        Нижче представлено офіційні витяги з протоколів засідань педагогічної ради 
+        та матеріали шкільної бібліотеки. Усі документи доступні для перегляду та завантаження.
+    </p>
+<section class="documents-library">
+  <h2>Документи: витяги з протоколів, матеріали бібліотеки та методичні матеріали</h2>
+
+  <!-- 1 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 8 від 07.04.2025 — Про результати вибору підручників для 3 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/протокол підручники 3 клас.pdf" download>Download "протокол підручники 3 клас.pdf"</a>
+      <div class="file-size">8.9 MB</div>
+    </div>
+  </article>
+
+  <!-- 2 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 7 від 25.03.2025 — Про результати вибору підручників для 8 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Протокол 8 клас.pdf" download>Download "Протокол 8 клас.pdf"</a>
+      <div class="file-size">1.1 MB</div>
+    </div>
+  </article>
+
+  <!-- 3 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 6 від 19.03.2025 — Про результати вибору підручників для 1-2 класів</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/витяг з протоколу.pdf" download>Download "витяг з протоколу.pdf"</a>
+      <div class="file-size">478.2 KB</div>
+    </div>
+  </article>
+
+  <!-- 4 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 9 від 06.05.2024 — Про результати вибору підручників з окремих предметів (7 та 11 класи)</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколуу.pdf" download>Download "Витяг з протоколу.pdf"</a>
+      <div class="file-size">132.7 KB</div>
+    </div>
+  </article>
+
+  <!-- 5 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 8 від 25.03.2024 — Про повторний вибір та замовлення проєктів підручників для 11 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Протокол педради_Замовлення.pdf" download>Download "Протокол педради_Замовлення.pdf"</a>
+      <div class="file-size">584.5 KB</div>
+    </div>
+  </article>
+
+  <!-- 6 (повторний запис того самого файлу у списку) -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 8 від 25.03.2024 — Про вибір та замовлення проєктів підручників для 11 класу</h3>
+      <p>PDF документ (дубль у списку)</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Протокол педради_Замовленн1я.pdf" download>Download "Протокол педради_Замовлення.pdf"</a>
+      <div class="file-size">584.5 KB</div>
+    </div>
+  </article>
+
+  <!-- 7 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 6 від 23.02.2024 — Про вибір та замовлення проєктів підручників для 7 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/протокол вибору.pdf" download>Download "протокол вибору.pdf"</a>
+      <div class="file-size">795.5 KB</div>
+    </div>
+  </article>
+
+  <!-- 8 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 5 від 24.01.2024 — Про вибір та замовлення проєктів підручників для 2 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Протокол1.pdf" download>Download "Протокол.pdf"</a>
+      <div class="file-size">1.6 MB</div>
+    </div>
+  </article>
+
+  <!-- 9 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 3 від 20.12.2023 — Про вибір та замовлення проєктів посібників для 1 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу1.pdf" download>Download "Витяг з протоколу.pdf"</a>
+      <div class="file-size">1.1 MB</div>
+    </div>
+  </article>
+
+  <!-- 10 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 8 від 08.05.2023 — Про конкурсний відбір та замовлення підручників для 10 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/конкурсний відбір.pdf" download>Download "конкурсний відбір.pdf"</a>
+      <div class="file-size">305.4 KB</div>
+    </div>
+  </article>
+
+  <!-- 11 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 9 від 08.05.2023 — Про повторний вибір підручників для 10 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/повторне видання.pdf" download>Download "повторне видання.pdf"</a>
+      <div class="file-size">405.1 KB</div>
+    </div>
+  </article>
+
+  <!-- 12 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 6 від 29.03.2023 — Про вибір та замовлення проєктів підручників для 5, 6 класів</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу2.pdf" download>Download "Витяг з протоколу.pdf"</a>
+      <div class="file-size">690.6 KB</div>
+    </div>
+  </article>
+
+  <!-- 13 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 5 від 24.02.2023 — Про вибір та замовлення проєктів підручників та посібників для 1 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу3.pdf" download>Download "Витяг з протоколу.pdf"</a>
+      <div class="file-size">356.6 KB</div>
+    </div>
+  </article>
+
+  <!-- 14 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педради № 11 від 27.05.2022 — Про вибір та замовлення проєктів підручників для 5 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Протокол вибір підручників.pdf" download>Download "Протокол вибір підручників.pdf"</a>
+      <div class="file-size">6.5 MB</div>
+    </div>
+  </article>
+
+  <!-- 15 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педради № 7 від 17.01.2022 — Про вибір та замовлення проєктів підручників для 9 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Протокол3.pdf" download>Download "Протокол.pdf"</a>
+      <div class="file-size">5.6 MB</div>
+    </div>
+  </article>
+
+  <!-- 16 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу педради № 5 від 01.03.2021 — Про вибір та замовлення проєктів підручників для 8 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Протокол 8 кл.pdf" download>Download "Протокол 8 кл.pdf"</a>
+      <div class="file-size">5.1 MB</div>
+    </div>
+  </article>
+
+  <!-- 17 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу педради № 4 від 01.02.2021 — Про вибір та замовлення проєктів підручників для 4 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Протокол 4 кл.pdf" download>Download "Протокол 4 кл.pdf"</a>
+      <div class="file-size">1.2 MB</div>
+    </div>
+  </article>
+
+  <!-- 18 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу педради № 4 від 01.02.2021 — Про вибір та замовлення проєктів підручників для 4 класу (витяг)</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу4.pdf" download>Download "Витяг з протоколу.pdf"</a>
+      <div class="file-size">2.0 MB</div>
+    </div>
+  </article>
+
+  <!-- 19 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Результати вибору електронних версій оригінал-макетів підручників для 4 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Результати вибору.pdf" download>Download "Результати вибору.pdf"</a>
+      <div class="file-size">1.7 MB</div>
+    </div>
+  </article>
+
+  <!-- 20 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Бібліотечні уроки для учнів початкових класів</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Бібліотечні уроки для учнів початкових к.pdf" download>Download "Бібліотечні уроки для учнів початкових клас.pdf"</a>
+      <div class="file-size">474.3 KB</div>
+    </div>
+  </article>
+
+  <!-- 21 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Список літератури для ЗНО з української мови та літератури — Список літератури: Що читати влітку учням</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Список літератури.pdf" download>Download "Список літератури.pdf"</a>
+      <div class="file-size">635.9 KB</div>
+    </div>
+  </article>
+
+  <!-- 22 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>17 аргументів на користь дитячих книжок</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/17 аргументів на користь дитячих книжок.pdf" download>Download "17 аргументів на користь дитячих книжок.pdf"</a>
+      <div class="file-size">555.1 KB</div>
+    </div>
+  </article>
+
+  <!-- 23 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Від учня до читача високої інформаційної культури — Навчання бути читачем: зміст, методи, форми бібліотечних уроків</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Від учня до читача високої інформаційної.pdf" download>Download "Від учня до читача високої інформаційної.pdf"</a>
+      <div class="file-size">744.3 KB</div>
+    </div>
+  </article>
+
+  <!-- 24 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 7 від 06.04.2020 — Про вибір та замовлення проектів підручників для 7 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу6.pdf" download>Download "Витяг з протоколу.pdf"</a>
+      <div class="file-size">342.8 KB</div>
+    </div>
+  </article>
+
+  <!-- 25 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу засідання педагогічної ради № 6 від 10.03.2020 — Про вибір та замовлення проектів підручників для 3 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/витяг з протоколу77.pdf" download>Download "витяг з протоколу.pdf"</a>
+      <div class="file-size">599.2 KB</div>
+    </div>
+  </article>
+
+  <!-- 26 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Результати вибору електронних версій оригінал-макетів підручників для 3 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/результати 1 001.pdf" download>Download "результати 1 001.pdf"</a>
+      <div class="file-size">502.3 KB</div>
+    </div>
+  </article>
+
+  <!-- 27 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>План проведення Всеукраїнського місячника шкільних бібліотек 2019</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Місячник шкільних бібліотек 2019-2020.pdf" download>Download "Місячник шкільних бібліотек 2019-2020.pdf"</a>
+      <div class="file-size">86.4 KB</div>
+    </div>
+  </article>
+
+  <!-- 28 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>План проведення районного семінару шкільних бібліотекарів 2019</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/План проведення семінару.pdf" download>Download "План проведення семінару.pdf"</a>
+      <div class="file-size">205.1 KB</div>
+    </div>
+  </article>
+
+  <!-- 29 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу про вибір та замовлення проєктів підручників для 11 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу про вибір підручників.pdf" download>Download "Витяг з протоколу про вибір підручників.pdf"</a>
+      <div class="file-size">223.7 KB</div>
+    </div>
+  </article>
+
+  <!-- 30 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу про вибір та замовлення проєктів підручників для 6 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу про вибір підручників для 6 класу.pdf" download>Download "Витяг з протоколу про вибір підручників.pdf"</a>
+      <div class="file-size">153.4 KB</div>
+    </div>
+  </article>
+
+  <!-- 31 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу про вибір та замовлення проєктів підручників для 2 класу (витяг №5 від 06.03.2019)</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу №5 від 06.03.2019.pdf" download>Download "Витяг з протоколу №5 від 06.03.2019.pdf"</a>
+      <div class="file-size">200.8 KB</div>
+    </div>
+  </article>
+
+  <!-- 32 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>План проведення Всеукраїнського місячника шкільної бібліотеки «Шкільна бібліотека – центр творчого розвитку дитини» (до 100-річчя В.О. Сухомлинського)</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/План проведення Всеукраїнського місячник.pdf" download>Download "План проведення Всеукраїнського місячник.pdf"</a>
+      <div class="file-size">142.5 KB</div>
+    </div>
+  </article>
+
+  <!-- 33 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Потреба закладів освіти в підручниках для 1 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/1 клас.pdf" download>Download "1 клас.pdf"</a>
+      <div class="file-size">7.9 KB</div>
+    </div>
+  </article>
+
+  <!-- 34 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Потреба закладів освіти в підручниках для 5 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/5 клас.pdf" download>Download "5 клас.pdf"</a>
+      <div class="file-size">6.6 KB</div>
+    </div>
+  </article>
+
+  <!-- 35 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Потреба закладів освіти в підручниках для 10 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/10 клас.pdf" download>Download "10 клас.pdf"</a>
+      <div class="file-size">12.1 KB</div>
+    </div>
+  </article>
+
+  <!-- 36 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу №9 засідання педагогічної ради Широківської СЗШ №2 — Про вибір та замовлення проєктів підручників для 1 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/протокол77.pdf" download>Download "протокол.pdf"</a>
+      <div class="file-size">92.2 KB</div>
+    </div>
+  </article>
+
+  <!-- 37 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу №8 засідання педагогічної ради Широківської СЗШ №2 — Про вибір та замовлення проектів підручників для 5, 10 класів</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з протоколу778.pdf" download>Download "Витяг з протоколу.pdf"</a>
+      <div class="file-size">3.3 MB</div>
+    </div>
+  </article>
+
+  <!-- 38 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Витяг з протоколу №6 засідання педагогічної ради Широківської СЗШ №2 — Про вибір та замовлення проектів підручників для 5 класу</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Витяг з прото4колу.pdf" download>Download "Витяг з протоколу.pdf"</a>
+      <div class="file-size">1.9 MB</div>
+    </div>
+  </article>
+
+  <!-- 39 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Цікаве з життя книг</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Цікаве з життя книг.pdf" download>Download "Цікаве з життя книг.pdf"</a>
+      <div class="file-size">147.5 KB</div>
+    </div>
+  </article>
+
+  <!-- 40 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>План роботи шкільної бібліотеки на 2017-</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/План роботи шкільної бібліотеки на 2017.pdf" download>Download "План роботи шкільної бібліотеки на 2017.pdf"</a>
+      <div class="file-size">418.0 KB</div>
+    </div>
+  </article>
+
+  <!-- 41 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Методичні рекомендації шкільним бібліотекарям</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Методичні рекомендації шкільним бібліоте.pdf" download>Download "Методичні рекомендації шкільним бібліоте.pdf"</a>
+      <div class="file-size">220.8 KB</div>
+    </div>
+  </article>
+
+  <!-- 42 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Типові правила користування бібліотеками</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Типові правила користування бібліотеками.pdf" download>Download "Типові правила користування бібліотеками.pdf"</a>
+      <div class="file-size">274.6 KB</div>
+    </div>
+  </article>
+
+  <!-- 43 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Місячник шкільної бібліотеки. Сценарій</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Місячник шкільної бібліотеки. Сценарій.pdf" download>Download "Місячник шкільної бібліотеки. Сценарій.pdf"</a>
+      <div class="file-size">276.8 KB</div>
+    </div>
+  </article>
+
+  <!-- 44 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Тиждень підручника — Пам'ятка</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Тиждень підручника Памятка.pdf" download>Download "Тиждень підручника Памятка.pdf"</a>
+      <div class="file-size">730.2 KB</div>
+    </div>
+  </article>
+
+  <!-- 45 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Урок - реквієм «Дзвони Чорнобиля»</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Урок - реквієм Дзвони Чорнобиля.pdf" download>Download "Урок - реквієм Дзвони Чорнобиля.pdf"</a>
+      <div class="file-size">219.7 KB</div>
+    </div>
+  </article>
+
+  <!-- 46 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Макулатуринг</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Макулатуринг.pdf" download>Download "Макулатуринг.pdf"</a>
+      <div class="file-size">758.8 KB</div>
+    </div>
+  </article>
+
+  <!-- 47 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Усний літературний журнал «Сторінками пис...»</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Усний літературний журнал Сторінками пис.pdf" download>Download "Усний літературний журнал Сторінками пис.pdf"</a>
+      <div class="file-size">129.6 KB</div>
+    </div>
+  </article>
+
+  <!-- 48 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Сценарій «Небесна сотня»</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Сценарій Небесна сотня.pdf" download>Download "Сценарій Небесна сотня.pdf"</a>
+      <div class="file-size">149.8 KB</div>
+    </div>
+  </article>
+
+  <!-- 49 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Літературне свято</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Літературне свято.pdf" download>Download "Літературне свято.pdf"</a>
+      <div class="file-size">300.0 KB</div>
+    </div>
+  </article>
+
+  <!-- 50 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Ерудит-лото</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Ерудит-лото.pdf" download>Download "Ерудит-лото.pdf"</a>
+      <div class="file-size">201.4 KB</div>
+    </div>
+  </article>
+
+  <!-- 51 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Екологічне виховання — Захід на тему</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Екологічне виховання. Захід на тему.pdf" download>Download "Екологічне виховання. Захід на тему.pdf"</a>
+      <div class="file-size">376.8 KB</div>
+    </div>
+  </article>
+
+  <!-- 52 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Бібліотечний урок</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Бібліотечний урок.pdf" download>Download "Бібліотечний урок.pdf"</a>
+      <div class="file-size">249.5 KB</div>
+    </div>
+  </article>
+
+  <!-- 53 -->
+  <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+      <h3>Наказ про підсумки роботи бібліотеки</h3>
+      <p>PDF документ</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/Наказ про підсумки роботи бібліотеки.pdf" download>Download "Наказ про підсумки роботи бібліотеки.pdf"</a>
+      <div class="file-size">162.9 KB</div>
+    </div>
+  </article>
+
+  <!-- 54 -->
+  <article class="file-card">
+    <div class="icon">DOC</div>
+    <div class="file-meta">
+      <h3>Звіт про роботу у бібліотеці</h3>
+      <p>Microsoft Word Document</p>
+    </div>
+    <div class="file-actions">
+      <a class="btn btn-download" href="files/звіт про роботу у бібліотеці.doc" download>Download "звіт про роботу у бібліотеці.doc"</a>
+      <div class="file-size">23.0 KB</div>
+    </div>
+  </article>
+
+</section>
+
+    <!-- Початок файлів -->
+
+
+</main>
+
+
+ 
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const fileCards = document.querySelectorAll('.file-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      fileCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+ <footer>
+    © 2025 Широківський ліцей №2. Усі права захищені.
+  </footer>
+</html>

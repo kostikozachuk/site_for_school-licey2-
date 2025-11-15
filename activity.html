@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Методичні Матеріали вчителів</title>
+    <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================
+       Колірна гамма:
+    ======================== */
+    :root{
+      --accent-1: #C3DCF0;
+      --accent-2: #91B9C1;
+      --accent-3: #D8DDE1;
+      --accent-4: #C19569;
+      --dark:     #090401;
+      --muted:    #6b6f74;
+      --glass:    rgba(255,255,255,0.65);
+      --shadow:   0 12px 30px rgba(9,4,1,0.06);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", "Poppins", sans-serif;
+      background: linear-gradient(180deg, #FBFDFF 0%, #F3F7FB 100%);
+      color: var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* container */
+    .container{
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+   
+    /* Hero */
+    .hero{
+      padding:36px 24px;
+      text-align:center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      margin:20px;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(9,4,1,0.06);
+      position:relative;
+    }
+    .hero h2{font-size:2rem;margin:0 0 8px;font-weight:800}
+    .hero p{margin:0;color:var(--muted);font-size:1rem}
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns:  360px 1fr;
+      gap:20px;
+      margin-top:22px;
+      padding:0 20px;
+}
+
+
+    /* Left: files listing */
+    .files {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .group-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:var(--dark);
+      margin:6px 0;
+    }
+    .group-title .dot{
+      width:12px;height:12px;background:linear-gradient(90deg,var(--accent-4),var(--accent-2));border-radius:4px;
+    }
+
+    /* card */
+    .file-card{
+      background: linear-gradient(180deg,#FFFFFF, #FBFBFD);
+      padding:14px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(9,4,1,0.04);
+      border: 1px solid rgba(9,4,1,0.03);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .file-card:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(9,4,1,0.07)}
+    .icon{
+      width:56px;height:56px;border-radius:10px;flex:0 0 56px;display:flex;align-items:center;justify-content:center;font-weight:800;
+      background:linear-gradient(135deg,var(--accent-1),var(--accent-3));
+      color:var(--dark);
+      box-shadow: inset 0 -4px 8px rgba(0,0,0,0.03);
+    }
+    .file-meta{flex:1}
+    .file-meta h3{margin:0;font-size:1rem;font-weight:800}
+    .file-meta p{margin:6px 0 0 0;color:var(--muted);font-size:0.95rem}
+    .file-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:800;text-decoration:none;
+    }
+    .btn-download{
+      background: linear-gradient(90deg,var(--accent-4), var(--accent-2));
+      color:#fff;
+      box-shadow: 0 10px 26px rgba(193,149,105,0.12);
+      font-size:0.95rem;
+    }
+    .btn-secondary{
+      background:transparent;border:1px solid rgba(9,4,1,0.06);color:var(--dark);font-weight:700;padding:8px 10px;border-radius:10px;font-size:0.9rem;
+    }
+    .file-size{font-size:0.85rem;color:var(--muted);margin-top:6px;text-align:right}
+
+    /* Right column (sidebar) */
+    .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start; /* вирівнює sidebar по верху контенту */
+}
+
+    .card{
+      padding:14px;border-radius:12px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(9,4,1,0.03)
+    }
+    .search input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(9,4,1,0.06);font-size:0.95rem}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{padding:6px 10px;border-radius:999px;background:var(--accent-3);font-weight:700;font-size:0.85rem}
+
+    /* footer */
+    footer{
+      margin-top:30px;padding:18px;background: linear-gradient(90deg,var(--accent-2), #E6EEF1);color: var(--dark);border-top-left-radius:14px;border-top-right-radius:14px;text-align:center;
+      box-shadow: 0 -6px 20px rgba(9,4,1,0.03);
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .sidebar{position:static}
+    }
+    @media (max-width:640px){
+      .hero h2{font-size:1.4rem}
+      .icon{width:48px;height:48px;flex:0 0 48px}
+      .file-card{padding:12px}
+      .btn-download{padding:7px 10px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Шкільний портал</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Головна</a></li>
+
+        <!-- Інформація -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інформація</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zagalni_vidomosti.html">Загальні відомості</a></li>
+            <li><a class="dropdown-item" href="teachers.html">Педагогічний колектив</a></li>
+            <li><a class="dropdown-item" href="experiment.html">Експериментальна діяльність школи</a></li>
+            <li><a class="dropdown-item" href="materials.html">Методичні матеріали вчителів</a></li>
+            <li><a class="dropdown-item" href="activity.html">Діяльність закладу</a></li>
+            <li><a class="dropdown-item" href="museum.html">Шкільний музей</a></li>
+            <li><a class="dropdown-item" href="library.html">Шкільна бібліотека</a></li>
+          </ul>
+        </li>
+
+        <!-- Виховна діяльність -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Виховна діяльність</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="vikhovna.html">Виховна робота школи</a></li>
+            <li><a class="dropdown-item" href="pozaklasna.html">Позакласна робота</a></li>
+            <li><a class="dropdown-item" href="samovryaduvannya.html">Самоврядування</a></li>
+            <li><a class="dropdown-item" href="achievements.html">Наші досягнення</a></li>
+            <li><a class="dropdown-item" href="tvorchi.html">Творчі роботи учнів</a></li>
+            <li><a class="dropdown-item" href="projects.html">Міжнародні проекти</a></li>
+          </ul>
+        </li>
+
+        <!-- Безпека -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Безпека</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="buling.html">Протидія та попередження булінгу</a></li>
+            <li><a class="dropdown-item" href="safety.html">Охорона праці</a></li>
+            <li><a class="dropdown-item" href="internet.html">Безпека в Інтернеті</a></li>
+            <li><a class="dropdown-item" href="rules.html">Правила поведінки, які можуть вберегти життя</a></li>
+          </ul>
+        </li>
+
+        <!-- Освітній процес -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Освітній процес</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zno.html">ЗНО / НМТ</a></li>
+            <li><a class="dropdown-item" href="distance.html">Дистанційне навчання</a></li>
+            <li><a class="dropdown-item" href="network.html">Мережа освітнього закладу</a></li>
+            <li><a class="dropdown-item" href="selfedu.html">Самоосвіта</a></li>
+          </ul>
+        </li>
+
+        <!-- Для батьків -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інше</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="parents.html">Інформація для батьків</a></li>
+            <li><a class="dropdown-item" href="graduates.html">Інформація для випускників</a></li>
+            <li><a class="dropdown-item" href="nutrition.html">Харчування учнів ліцею</a></li>
+            <li><a class="dropdown-item" href="psychologist.html">Сторінка психолога</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакти</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- HERO -->
+  <main class="container">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Діяльність закладу</h2>
+      <p>Матеріали про повну діяльність закладу.</p>
+    </section>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- LEFT: Files -->
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="sidebar" aria-label="Панель інструментів">
+        <div class="card search">
+            <strong>Пошук документів</strong>
+            <input type="text" id="searchInput" placeholder="Введіть назву документа..." />
+        </div>
+        </aside>
+
+
+        <div class="card">
+          <strong>Швидкий доступ</strong>
+          <div class="tags" style="margin-top:10px">
+            <span class="tag">Посібники</span>
+            <span class="tag">Мережа</span>
+            <span class="tag">Додатки</span>
+            <span class="tag">Презентації</span>
+            <span class="tag">Уроки</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>Рекомендація</strong>
+          <p style="color:var(--muted);margin-top:8px;font-size:0.95rem">Використайте структуровані імена файлів, щоб легко відновлювати архіви. Під час публікації на сайті завантажуйте файли у папку /files/ і замінюйте "#" на реальні шляхи.</p>
+        </div>
+      </aside>
+
+<div class="accordion">
+  <details>
+    <summary>Фінансово-господарська діяльність</summary>
+    <div><!-- 1 -->
+<article class="file-card"><div class="icon">LINK</div><div class="file-meta"><h3>Посилання на публічні закупівлі</h3><p>prozorro.gov.ua</p></div><div class="file-actions"><a class="btn btn-download" href="https://prozorro.gov.ua" download>Відкрити "prozorro.gov.ua"</a><div class="file-size"></div></div></article>
+
+<!-- 2 -->
+<article class="file-card"><div class="icon">LINK</div><div class="file-meta"><h3>Посилання на фінансовий звіт</h3><p>gromadas2018.ucoz.net</p></div><div class="file-actions"><a class="btn btn-download" href="http://gromadas2018.ucoz.net/load/finansovij_zvit_2020/1-1-0-69" download>Відкрити "finansovij_zvit_2020"</a><div class="file-size"></div></div></article>
+
+<!-- 3 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Уточнений кошторис за січень-липень 2020</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/utochnenyy_koshtorys_2020.pdf" download>Download "utochnenyy_koshtorys_2020.pdf"</a><div class="file-size">525.8 KB</div></div></article>
+
+<!-- 4 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Уточнений кошторис за 2019 р.</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/utochnenyy_koshtorys_2019.pdf" download>Download "utochnenyy_koshtorys_2019.pdf"</a><div class="file-size">541.4 KB</div></div></article>
+
+<!-- 5 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Інформація про перелік товарів, робіт і послуг, отриманих як благодійна допомога</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/perelik_blagodiyna_dopomoga.pdf" download>Download "perelik_blagodiyna_dopomoga.pdf"</a><div class="file-size">61.0 KB</div></div></article>
+
+<!-- 6 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Забезпечення приміщеннями та обладнанням</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/materialno_tekh_zabezpechennya.pdf" download>Download "materialno_tekh_zabezpechennya.pdf"</a><div class="file-size">217.5 KB</div></div></article>
+
+<!-- 7 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>План асигнувань загального фонду бюджету</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/plan_asignuvan.pdf" download>Download "plan_asignuvan.pdf"</a><div class="file-size">127.2 KB</div></div></article>
+</div>
+  </details>
+
+  <details>
+    <summary>Установчі документи</summary>
+    <div><!-- 1 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Статут Широківського ліцею 2</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/statut_shyrokivskyi_licei2.pdf" download>Download "Статут Широківського ліцею 2.pdf"</a><div class="file-size">669.6 KB</div></div></article>
+
+<!-- 2 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Положення про Запорізьку гімназію</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/statut_shyrokivskyi_licei3.pdf" download>Download "Положення про Запорізьку гімназію.pdf"</a><div class="file-size">612.9 KB</div></div></article>
+
+<!-- 3 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Положення про Новокурську гімназію</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/polozhennya_novokurska_gymnaziya.pdf" download>Download "Положення про Новокурську гімназію.pdf"</a><div class="file-size">614.5 KB</div></div></article>
+
+<!-- 4 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Виписка з ЄДРЮО — Запорізька гімназія</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/vypyska_zaporizka.pdf" download>Download "Виписка з ЄДРЮО Запорізька гімназія.pdf"</a><div class="file-size">1.8 MB</div></div></article>
+
+<!-- 5 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Виписка з ЄДРЮО — Новокурська гімназія</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/vypyska_novokurska.pdf" download>Download "Виписка з ЄДРЮО Новокурська гімназія.pdf"</a><div class="file-size">1.8 MB</div></div></article>
+
+<!-- 6 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Статут Широківської ОШ ЗСО — Опорна школа</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/statut_oporna_shkola.pdf" download>Download "Статут Опорна школа.pdf"</a><div class="file-size">773.6 KB</div></div></article>
+
+<!-- 7 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Відомості з ЄДРПОУ Широківська ОШ ЗСО</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/vidomosti_edrpou.pdf" download>Download "Відомості з ЄДРПОУ.pdf"</a><div class="file-size">1.8 MB</div></div></article>
+
+<!-- 8 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Освітні програми закладу ЗСО</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/osvitni_programy.pdf" download>Download "Освітні програми.pdf"</a><div class="file-size">256.6 KB</div></div></article>
+
+<!-- 9 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Статут Широківської СЗШ №2</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/statut_szsh2.pdf" download>Download "Статут.pdf"</a><div class="file-size">5.7 MB</div></div></article>
+
+<!-- 10 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Витяг з ЄДР юридичних осіб</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/vytyag.pdf" download>Download "Витяг.pdf"</a><div class="file-size">1.6 MB</div></div></article>
+
+<!-- 11 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Свідоцтво про атестацію Широківської СЗШ №2</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/svidotstvo_atestatsiya.pdf" download>Download "Свідоцтво про атестацію.pdf"</a><div class="file-size">874.1 KB</div></div></article>
+
+<!-- 12 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензія</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/licenziya.pdf" download>Download "Ліцензія.pdf"</a><div class="file-size">985.5 KB</div></div></article>
+</div>
+  </details>
+
+  <details>
+    <summary>Кадровий склад педагогічних працівників</summary>
+    <div><article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Інформація про якісний склад педагогічних працівників Широківської СЗШ №2</h3><p></p></div><div class="file-actions"><a class="btn btn-download" href="files/licenziya1.pdf" download>Download "Кадровий.pdf"</a><div class="file-size">4.1 МB</div></div></article>
+</div>
+  </details>
+
+  <details>
+    <summary>Мікрорайон обслуговування</summary>
+    <div><!-- 1 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Закріплена територія обслуговування</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/zakriplena_terytoriya_obslugovuvannya.pdf" download>Download "zakriplena_terytoriya_obslugovuvannya.pdf"</a><div class="file-size">185.5 KB</div></div></article>
+
+
+<!-- 2 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Закріплена територія обслуговування (Широківська опорна школа, 2020)</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/zakriplena_terytoriya_2020.pdf" download>Download "zakriplena_terytoriya_2020.pdf"</a><div class="file-size">332.6 KB</div></div></article>
+
+
+<!-- 3 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Територія обслуговування Широківська СЗШ №2</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/terytoriya_szsh2.pdf" download>Download "terytoriya_szsh2.pdf"</a><div class="file-size">131.1 KB</div></div></article></div>
+  </details>
+
+  <details>
+    <summary>Річний звіт</summary>
+    <div>
+
+<!-- 4 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>1.1. АНАЛІЗ РОБОТИ ЗА 2022-2023</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/analiz_2022_2023.pdf" download>Download "analiz_2022_2023.pdf"</a><div class="file-size">1.2 MB</div></div></article>
+
+
+<!-- 5 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Педагогічний аналіз роботи школи 2016/2017</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/ped_analiz_2016.pdf" download>Download "ped_analiz_2016.pdf"</a><div class="file-size">706.7 KB</div></div></article></div>
+  </details>
+
+  <details>
+    <summary>Звіт керівника</summary>
+    <div>
+
+<!-- 6 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Звіт керівника 2023-2024</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/zvit_2023_2024.pdf" download>Download "zvit_2023_2024.pdf"</a><div class="file-size">731.4 KB</div></div></article>
+
+
+<!-- 7 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Звіт керівника 2022-2023</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/zvit_2022_2023.pdf" download>Download "zvit_2022_2023.pdf"</a><div class="file-size">841.4 KB</div></div></article>
+
+
+<!-- 8 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Звіт керівника 2021-2022</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/zvit_2021_2022.pdf" download>Download "zvit_2021_2022.pdf"</a><div class="file-size">759.2 KB</div></div></article>
+
+
+<!-- 9 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Звіт керівника 2020-2021</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/zvit_2020_2021.pdf" download>Download "zvit_2020_2021.pdf"</a><div class="file-size">780.1 KB</div></div></article>
+
+
+<!-- 10 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Звіт керівника 2019-2020</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/zvit_2019_2020.pdf" download>Download "zvit_2019_2020.pdf"</a><div class="file-size">449.0 KB</div></div></article>
+
+
+<!-- 11 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Звіт керівника 2018</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/zvit_2018.pdf" download>Download "zvit_2018.pdf"</a><div class="file-size">461.7 KB</div></div></article></div>
+  </details>
+
+  <details>
+    <summary>Мова (мови) освітнього процесу</summary>
+    <div><section class="language-policy">
+  <h2>Мова освітнього процесу</h2>
+
+  <div class="block">
+    <p>Мова, якою відбувається освітній процес – українська.</p>
+    <p>У закладі в 1–11 класах викладається англійська мова.</p>
+    <p>У 1–9 класах викладається російська мова.</p>
+  </div>
+
+  <div class="block">
+    <h3>Відповідно до Закону України «Про повну загальну середню освіту», стаття 5. Мова освіти</h3>
+
+    <h4>1. Мова освітнього процесу</h4>
+    <p>Мовою освітнього процесу в закладах загальної середньої освіти є державна мова. Кожен учень зобов’язаний вивчати державну мову відповідно до стандартів.</p>
+
+    <h4>2. Гарантоване право учнів</h4>
+    <p>Кожен учень має право на здобуття освіти державною мовою. Навчання проводиться державною мовою, крім випадків, визначених законом.</p>
+
+    <h4>3. Мови корінних народів та національних меншин</h4>
+    <p>Учні, що належать до корінних народів або національних меншин України, мають право вивчати відповідну мову у школах або через культурні товариства.</p>
+
+    <h4>4. Освіта мовою корінних народів</h4>
+    <p>Особи, що належать до корінних народів України, можуть здобувати освіту мовою свого народу поряд із державною мовою.</p>
+
+    <h4>5. Освіта мовою національних меншин</h4>
+    <p>Особи національних меншин України мають право здобувати початкову освіту мовою своєї меншини поряд із державною мовою.</p>
+
+    <h4>6. Освіта мовами національних меншин ЄС</h4>
+    <p>Учні таких меншин здобувають:</p>
+    <ul>
+      <li>базову середню освіту державною мовою — не менше 20% часу у 5 класі з щорічним збільшенням (не менше 40% у 9 класі);</li>
+      <li>профільну середню освіту — не менше 60% часу державною мовою.</li>
+    </ul>
+
+    <p>Особи інших національних меншин навчаються державною мовою не менше 80% навчального часу.</p>
+    <p>Перелік предметів, що викладаються державною мовою і мовою меншини, визначається освітньою програмою.</p>
+
+    <h4>7. Навчання мовою меншини в окремих класах</h4>
+    <p>Право на навчання мовою меншини реалізується в окремих класах, що відкриваються відповідно до Закону.</p>
+
+    <h4>8. Право осіб з порушеннями слуху</h4>
+    <p>Таким особам гарантується право на навчання українською жестовою мовою та її вивчення.</p>
+
+    <h4>9. Можливість викладання іншими мовами ЄС</h4>
+    <p>Освітні програми можуть дозволяти викладання окремих предметів англійською або іншою офіційною мовою ЄС.</p>
+
+    <h4>10. Приватні заклади освіти</h4>
+    <p>Приватні школи мають право самостійно обирати мову освітнього процесу (за умови відсутності публічного фінансування), але зобов’язані забезпечувати вивчення державної мови.</p>
+
+    <h4>11. Освіта за кордоном</h4>
+    <p>Держава сприяє створенню закладів загальної середньої освіти за кордоном, де навчання здійснюється українською мовою або де українська мова вивчається.</p>
+  </div>
+</section>
+</div>
+  </details>
+
+  <details>
+    <summary>Права та обов'язки здобувачів освіти. Правила поведінки</summary>
+    <div><!-- 1 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Правила поведінки</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/pravila_povedinky.pdf" download>Download "pravila_povedinky.pdf"</a><div class="file-size">238.5 KB</div></div></article>
+
+
+<!-- 2 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Права та обов’язки здобувачів освіти</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/prava_ta_obovyazky.pdf" download>Download "prava_ta_obovyazky.pdf"</a><div class="file-size">530.5 KB</div></div></article></div>
+  </details>
+
+  <details>
+    <summary>Розмір плати за навчання</summary>
+    <div><!-- 3 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Забезпечення права на безоплатну освіту</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/bezoplatna_osvita.pdf" download>Download "bezoplatna_osvita.pdf"</a><div class="file-size">501.6 KB</div></div></article></div>
+  </details>
+
+  <details>
+    <summary>Ліцензійні матеріали освітнього закладу</summary>
+    <div><!-- 4 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензійна справа. Частина 1</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/lic_sprava_1.pdf" download>Download "lic_sprava_1.pdf"</a><div class="file-size">8.0 MB</div></div></article>
+
+
+<!-- 5 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензійна справа. Частина 2-1</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/lic_sprava_2_1.pdf" download>Download "lic_sprava_2_1.pdf"</a><div class="file-size">7.9 MB</div></div></article>
+
+
+<!-- 6 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензійна справа. Частина 2-2</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/lic_sprava_2_2.pdf" download>Download "lic_sprava_2_2.pdf"</a><div class="file-size">8.6 MB</div></div></article>
+
+
+<!-- 7 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензійна справа. Частина 3</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/lic_sprava_3.pdf" download>Download "lic_sprava_3.pdf"</a><div class="file-size">6.5 MB</div></div></article>
+
+
+<!-- 8 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензійна справа. Частина 4</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/lic_sprava_4.pdf" download>Download "lic_sprava_4.pdf"</a><div class="file-size">6.4 MB</div></div></article>
+
+
+<!-- 9 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензійна справа. Частина 5</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/lic_sprava_5.pdf" download>Download "lic_sprava_5.pdf"</a><div class="file-size">5.9 MB</div></div></article>
+
+
+<!-- 10 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензійна справа. Частина 6</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/lic_sprava_6.pdf" download>Download "lic_sprava_6.pdf"</a><div class="file-size">6.0 MB</div></div></article>
+
+
+<!-- 11 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Ліцензійна справа. Частина 7</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/lic_sprava_7.pdf" download>Download "lic_sprava_7.pdf"</a><div class="file-size">3.9 MB</div></div></article></div>
+  </details>
+
+  <details>
+    <summary>Правила прийому до закладу освіти</summary>
+    <div> <div class="photo-container">
+    <img src="photos/r1.png" alt="Опис фото" class="responsive-photo clickable-photo">
+  </div> <div class="photo-container">
+    <img src="photos/r2.jpg" alt="Опис фото" class="responsive-photo clickable-photo">
+  </div> <div class="photo-container">
+    <img src="photos/r3.jpg" alt="Опис фото" class="responsive-photo clickable-photo">
+  </div> <div class="photo-container">
+    <img src="photos/r4.jpg" alt="Опис фото" class="responsive-photo clickable-photo">
+  </div>
+
+
+    <article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Порядок_зарахування.pdf</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/Порядок_зарахування.pdf" download>Download "lic_sprava_7.pdf"</a><div class="file-size">374.9 КB</div></div></article></div>
+    
+
+    <article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Порядок зарахування, відрахування та переведення</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/Порядок зарахування, відрахування та пер.pdf" download>Download "lic_sprava_7.pdf"</a><div class="file-size">705.9 КB</div></div></article>
+    
+
+  </details>
+
+  <details>
+    <summary>Освітні програми</summary>
+    <div><!-- 9 -->
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Перелік навчальних програм</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/osvita.pdf" download>Download "osvita.pdf"</a><div class="file-size">219.4 KB</div></div></article>
+</div>
+  </details>
+
+  <details>
+    <summary>Умови доступності закладу освіти для навчання осіб з ООП</summary>
+    <div>
+<article class="file-card"><div class="icon">PDF</div><div class="file-meta"><h3>Умови доступності закладу освіти для навчання осіб з ООП</h3><p>Adobe Acrobat Document</p></div><div class="file-actions"><a class="btn btn-download" href="files/osvita.pdf" download>Download "oop.pdf"</a><div class="file-size">168.3 KB</div></div></article>
+</div>
+  </details>
+
+  <details>
+    <summary>Атестація педагогічних працівників</summary>
+    <div><section class="normative-base">
+    <h2>Нормативно-правова база щодо організації та проведення атестації педагогічних працівників у 2024/2025 н.р.</h2>
+
+    <p>
+        Атестаційна кампанія має розпочинатися з опрацювання нормативних документів, що регулюють цей процес. 
+        Пропонуємо поповнити свій професійний кейс та скористатися представленою нормативно-правовою базою щодо 
+        організації та проведення атестації педагогічних працівників, яка є чинною станом на 01.10.2024 року.
+    </p>
+
+    <div class="laws-list">
+        <ul>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/2145-19#Text" target="_blank">Закон України «Про освіту» від 05.09.2017 № 2145-VIII</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/103/98-%D0%B2%D1%80#Text" target="_blank">Закон України «Про професійну (професійно-технічну) освіту» від 10.02.1998 № 103/98-ВР</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/1556-18#Text" target="_blank">Закон України «Про вищу освіту» від 01.07.2014 № 1556-VII</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/2745-19#Text" target="_blank">Закон України «Про фахову передвищу освіту» від 06.06.2019 № 2745-VIII</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/463-20#Text" target="_blank">Закон України «Про загальну середню освіту» від 16.01.2020 № 463-IX</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/1841-14#Text" target="_blank">Закон України «Про позашкільну освіту» від 22.06.2000 № 1841-III</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/2628-14#Text" target="_blank">Закон України «Про дошкільну освіту» від 11.07.2001 № 2628-III</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/4312-17#Text" target="_blank">Закон України «Про професійний розвиток працівників» від 12.01.2012 № 4312-VI</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/1109-2015-%D0%BF#Text" target="_blank">Постанова КМУ №1109 від 23.12.2015 (Категорії та звання)</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/1190-2018-%D0%BF#Text" target="_blank">Постанова КМУ №1190 від 27.12.2018 (Сертифікація педпрацівників)</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/800-2019-%D0%BF#Text" target="_blank">Постанова КМУ №800 від 21.08.2019 (Підвищення кваліфікації)</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/1133-2019-%D0%BF#Text" target="_blank">Постанова КМУ №1133 від 27.12.2019 (Зміни до порядку підвищення кваліфікації)</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/z1130-05#Text" target="_blank">Наказ МОН №557 від 26.09.2005 (Оплата праці)</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/z0571-12#Text" target="_blank">Наказ Мін'юсту №578/5 від 12.04.2012 (Строки зберігання документів)</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/z1649-22#Text" target="_blank">Наказ МОН №805 від 09.09.2022 (Положення про атестацію)</a></li>
+            <li><a href="https://zakon.rada.gov.ua/laws/show/435-15#Text" target="_blank">Цивільний кодекс України</a></li>
+        </ul>
+    </div>
+
+    <h3>Файли та матеріали</h3>
+
+    <!-- ЗРАЗОК: використано ваш формат file-card -->
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Лист МОН щодо атестації (15.12.2020 №1/9-690)</h3>
+            <p>Adobe Acrobat Document</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/list_MON_1_9_690.pdf" download>Download</a>
+            <div class="file-size">—</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Дані про підвищення кваліфікації вчителя</h3>
+            <p>76.9 KB</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/dani_pidv_kval.pdf" download>Download</a>
+            <div class="file-size">76.9 KB</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Презентація про нове Положення (2023)</h3>
+            <p>Adobe Acrobat Document</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/nove_polozhennia_2023.pdf" download>Download</a>
+            <div class="file-size">6.2 MB</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Огляд нового Положення про атестацію</h3>
+            <p>Adobe Acrobat Document</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/oglyad_polozhennia.pdf" download>Download</a>
+            <div class="file-size">544.1 KB</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Нова атестація (Огляд)</h3>
+            <p>Adobe Acrobat Document</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/nova_atestacia.pdf" download>Download</a>
+            <div class="file-size">1.8 MB</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Клопотання про зарахування підвищення кваліфікації</h3>
+            <p>Adobe Acrobat Document</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/klopotannia.pdf" download>Download</a>
+            <div class="file-size">196.1 KB</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Лист МОН №1/9-141 від 04.03.2020</h3>
+            <p>Щодо підвищення кваліфікації педагогічних працівників</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/list_MON_1_9_141.pdf" download>Download</a>
+            <div class="file-size">6.9 MB</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Проєкт-дослідження: Підвищення кваліфікації педагогів</h3>
+            <p>Adobe Acrobat Document</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/pidv_kval_proekt.pdf" download>Download</a>
+            <div class="file-size">1.2 MB</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Графік роботи атестаційної комісії</h3>
+            <p>Adobe Acrobat Document</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/grafik_komisii.pdf" download>Download</a>
+            <div class="file-size">210.7 KB</div>
+        </div>
+    </article>
+
+    <article class="file-card">
+        <div class="icon">PDF</div>
+        <div class="file-meta">
+            <h3>Список педагогічних працівників, які атестуються у 2023–2024 н.р.</h3>
+            <p>Adobe Acrobat Document</p>
+        </div>
+        <div class="file-actions">
+            <a class="btn btn-download" href="files/spysok_atestacia_23_24.pdf" download>Download</a>
+            <div class="file-size">336.8 KB</div>
+        </div>
+    </article>
+
+    <p class="contact-info">
+        Електронна адреса атестаційної комісії: 
+        <a href="mailto:atestatciya2023@gmail.com">atestatciya2023@gmail.com</a>
+    </p>
+</section>
+</div>
+  </details>
+
+  <details>
+    <summary>Форма навчання</summary>
+    <div><section class="learning-forms">
+  <h2>Форми навчання у ліцеї</h2>
+
+  <div class="block">
+    <h3>Які форми навчання існують у ліцеї?</h3>
+    <p>Відповідно до статті 9 Закону України «Про освіту» загальна середня освіта може бути організована за такими формами:</p>
+
+    <ul>
+      <li>інституційна (очна: денна, вечірня);</li>
+      <li>заочна (дистанційна, мережева);</li>
+      <li>індивідуальна (екстернатна, сімейна, педагогічний патронаж).</li>
+    </ul>
+
+    <p>Усі ці форми є абсолютно рівнозначними.</p>
+  </div>
+
+  <div class="block">
+    <h3>Що таке екстернатна форма навчання і кому вона доступна?</h3>
+    <p>Екстернат — це навчання, коли учень зареєстрований у ліцеї, але навчається вдома. Він складає річні контрольні, приходить на консультації, користується шкільними підручниками.</p>
+
+    <p>На екстернат можна перейти лише за наявності підстав. Доступно для:</p>
+
+    <ul>
+      <li>учнів з особливими освітніми потребами;</li>
+      <li>спортсменів та дітей, які займаються мистецтвом;</li>
+      <li>учнів, що випереджають програму;</li>
+      <li>дітей, які часто переїжджають або живуть за кордоном;</li>
+      <li>учнів з тимчасово окупованих територій;</li>
+      <li>іноземців або осіб без громадянства;</li>
+      <li>тих, хто не завершив здобуття освіти або не має річного оцінювання.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h3>Що таке сімейна форма навчання?</h3>
+    <p>Сімейна (домашня) форма — це навчання, яке організовують батьки самостійно. Вони несуть відповідальність за рівень знань дитини. Учні проходять оцінювання чотири рази на рік.</p>
+
+    <p>У разі низьких результатів педагогічна рада може рекомендувати або прийняти рішення про переведення на очну форму.</p>
+
+    <p>Учні на сімейній формі мають право отримувати підручники, консультації та підтримку вчителів.</p>
+  </div>
+
+  <div class="block">
+    <h3>Що таке педагогічний патронаж?</h3>
+    <p>Педагогічний патронаж призначений для дітей, які не можуть відвідувати школу за станом здоров’я, навчаються у лікарні або перебувають у сільських школах з малокомплектними класами.</p>
+    <p>Передбачає індивідуальний супровід учителя та самостійне опрацювання матеріалу.</p>
+  </div>
+
+  <div class="block">
+    <h3>Які документи необхідні для переходу на індивідуальну форму?</h3>
+
+    <p>Для зарахування до школи потрібні:</p>
+    <ul>
+      <li>паспорт заявника;</li>
+      <li>свідоцтво про народження дитини;</li>
+      <li>медична довідка № 086-1/о;</li>
+      <li>документ про місце проживання.</li>
+    </ul>
+
+    <p>Щоб змінити форму навчання, потрібні:</p>
+    <ul>
+      <li>заява одного з батьків;</li>
+      <li>документ, що посвідчує особу учня;</li>
+      <li>медична довідка;</li>
+      <li>документ про освіту (якщо є).</li>
+    </ul>
+
+    <p>У разі переходу на екстернат або патронаж можуть вимагатися додаткові документи.</p>
+  </div>
+
+  <div class="block">
+    <h3>Чи можна перейти на індивідуальну форму протягом року?</h3>
+    <p>Так, але не пізніше ніж за три місяці до річного оцінювання. Обмеження не діє для педагогічного патронажу.</p>
+
+    <p>Для дітей з окупованих територій або тих, хто навчався за кордоном, переведення можливе протягом року.</p>
+  </div>
+
+  <div class="block">
+    <h3>Чи можуть перевести з індивідуальної форми на інституційну?</h3>
+    <p>Так, якщо індивідуальна форма не приносить результатів. Рішення ухвалюють батьки або педагогічна рада.</p>
+  </div>
+
+  <div class="block">
+    <h3>Як повернутися на очну форму?</h3>
+    <p>Батьки подають заяву. Через два тижні дитина може знову відвідувати ліцей.</p>
+  </div>
+
+  <div class="block">
+    <h3>Чи можуть учні індивідуальної форми брати участь у олімпіадах?</h3>
+    <p>Так, на загальних підставах. Також вони мають право на нагороди, грамоти, медалі.</p>
+  </div>
+
+  <div class="block">
+    <h3>Чим дистанційне навчання відрізняється від дистанційної форми здобуття освіти?</h3>
+    <p>Дистанційне навчання — це тимчасовий спосіб (наприклад, під час пандемії).</p>
+    <p>Дистанційна форма — офіційна, регламентована. Може застосовуватися, якщо:</p>
+
+    <ul>
+      <li>дитина не може відвідувати школу через стан здоров’я;</li>
+      <li>дитині потрібна індивідуальна освітня траєкторія.</li>
+    </ul>
+
+    <p>Для переходу потрібна заява та пакет документів. Погодження здійснює педагогічна рада школи.</p>
+  </div>
+</section>
+</div>
+  </details>
+</div>
+
+
+</main>
+
+
+ 
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const fileCards = document.querySelectorAll('.file-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      fileCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+ <footer>
+    © 2025 Широківський ліцей №2. Усі права захищені.
+  </footer>
+</html>

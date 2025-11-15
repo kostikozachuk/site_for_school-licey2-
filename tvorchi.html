@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Методичні Матеріали вчителів</title>
+    <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================
+       Колірна гамма:
+    ======================== */
+    :root{
+      --accent-1: #C3DCF0;
+      --accent-2: #91B9C1;
+      --accent-3: #D8DDE1;
+      --accent-4: #C19569;
+      --dark:     #090401;
+      --muted:    #6b6f74;
+      --glass:    rgba(255,255,255,0.65);
+      --shadow:   0 12px 30px rgba(9,4,1,0.06);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", "Poppins", sans-serif;
+      background: linear-gradient(180deg, #FBFDFF 0%, #F3F7FB 100%);
+      color: var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* container */
+    .container{
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+   
+    /* Hero */
+    .hero{
+      padding:36px 24px;
+      text-align:center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      margin:20px;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(9,4,1,0.06);
+      position:relative;
+    }
+    .hero h2{font-size:2rem;margin:0 0 8px;font-weight:800}
+    .hero p{margin:0;color:var(--muted);font-size:1rem}
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns:  360px 1fr;
+      gap:20px;
+      margin-top:22px;
+      padding:0 20px;
+}
+
+
+    /* Left: files listing */
+    .files {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .group-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:var(--dark);
+      margin:6px 0;
+    }
+    .group-title .dot{
+      width:12px;height:12px;background:linear-gradient(90deg,var(--accent-4),var(--accent-2));border-radius:4px;
+    }
+
+    /* card */
+    .file-card{
+      background: linear-gradient(180deg,#FFFFFF, #FBFBFD);
+      padding:14px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(9,4,1,0.04);
+      border: 1px solid rgba(9,4,1,0.03);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .file-card:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(9,4,1,0.07)}
+    .icon{
+      width:56px;height:56px;border-radius:10px;flex:0 0 56px;display:flex;align-items:center;justify-content:center;font-weight:800;
+      background:linear-gradient(135deg,var(--accent-1),var(--accent-3));
+      color:var(--dark);
+      box-shadow: inset 0 -4px 8px rgba(0,0,0,0.03);
+    }
+    .file-meta{flex:1}
+    .file-meta h3{margin:0;font-size:1rem;font-weight:800}
+    .file-meta p{margin:6px 0 0 0;color:var(--muted);font-size:0.95rem}
+    .file-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:800;text-decoration:none;
+    }
+    .btn-download{
+      background: linear-gradient(90deg,var(--accent-4), var(--accent-2));
+      color:#fff;
+      box-shadow: 0 10px 26px rgba(193,149,105,0.12);
+      font-size:0.95rem;
+    }
+    .btn-secondary{
+      background:transparent;border:1px solid rgba(9,4,1,0.06);color:var(--dark);font-weight:700;padding:8px 10px;border-radius:10px;font-size:0.9rem;
+    }
+    .file-size{font-size:0.85rem;color:var(--muted);margin-top:6px;text-align:right}
+
+    /* Right column (sidebar) */
+    .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start; /* вирівнює sidebar по верху контенту */
+}
+
+    .card{
+      padding:14px;border-radius:12px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(9,4,1,0.03)
+    }
+    .search input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(9,4,1,0.06);font-size:0.95rem}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{padding:6px 10px;border-radius:999px;background:var(--accent-3);font-weight:700;font-size:0.85rem}
+
+    /* footer */
+    footer{
+      margin-top:30px;padding:18px;background: linear-gradient(90deg,var(--accent-2), #E6EEF1);color: var(--dark);border-top-left-radius:14px;border-top-right-radius:14px;text-align:center;
+      box-shadow: 0 -6px 20px rgba(9,4,1,0.03);
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .sidebar{position:static}
+    }
+    @media (max-width:640px){
+      .hero h2{font-size:1.4rem}
+      .icon{width:48px;height:48px;flex:0 0 48px}
+      .file-card{padding:12px}
+      .btn-download{padding:7px 10px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Шкільний портал</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Головна</a></li>
+
+        <!-- Інформація -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інформація</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zagalni_vidomosti.html">Загальні відомості</a></li>
+            <li><a class="dropdown-item" href="teachers.html">Педагогічний колектив</a></li>
+            <li><a class="dropdown-item" href="experiment.html">Експериментальна діяльність школи</a></li>
+            <li><a class="dropdown-item" href="materials.html">Методичні матеріали вчителів</a></li>
+            <li><a class="dropdown-item" href="activity.html">Діяльність закладу</a></li>
+            <li><a class="dropdown-item" href="museum.html">Шкільний музей</a></li>
+            <li><a class="dropdown-item" href="library.html">Шкільна бібліотека</a></li>
+          </ul>
+        </li>
+
+        <!-- Виховна діяльність -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Виховна діяльність</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="vikhovna.html">Виховна робота школи</a></li>
+            <li><a class="dropdown-item" href="pozaklasna.html">Позакласна робота</a></li>
+            <li><a class="dropdown-item" href="samovryaduvannya.html">Самоврядування</a></li>
+            <li><a class="dropdown-item" href="achievements.html">Наші досягнення</a></li>
+            <li><a class="dropdown-item" href="tvorchi.html">Творчі роботи учнів</a></li>
+            <li><a class="dropdown-item" href="projects.html">Міжнародні проекти</a></li>
+          </ul>
+        </li>
+
+        <!-- Безпека -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Безпека</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="buling.html">Протидія та попередження булінгу</a></li>
+            <li><a class="dropdown-item" href="safety.html">Охорона праці</a></li>
+            <li><a class="dropdown-item" href="internet.html">Безпека в Інтернеті</a></li>
+            <li><a class="dropdown-item" href="rules.html">Правила поведінки, які можуть вберегти життя</a></li>
+          </ul>
+        </li>
+
+        <!-- Освітній процес -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Освітній процес</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zno.html">ЗНО / НМТ</a></li>
+            <li><a class="dropdown-item" href="distance.html">Дистанційне навчання</a></li>
+            <li><a class="dropdown-item" href="network.html">Мережа освітнього закладу</a></li>
+            <li><a class="dropdown-item" href="selfedu.html">Самоосвіта</a></li>
+          </ul>
+        </li>
+
+        <!-- Для батьків -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Для батьків</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="parents.html">Інформація для батьків</a></li>
+            <li><a class="dropdown-item" href="graduates.html">Інформація для випускників</a></li>
+            <li><a class="dropdown-item" href="nutrition.html">Харчування учнів ліцею</a></li>
+            <li><a class="dropdown-item" href="psychologist.html">Сторінка психолога</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакти</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- HERO -->
+  <main class="container">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Творчі роботи учнів</h2>
+      <p>Добірка уроків, активностей, фото, додатків та методичних матеріалів та описів, що стосуються творичих робіт роботи. Завантажуйте документи або використовуйте їх як шаблони.</p>
+    </section>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- LEFT: Files -->
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="sidebar" aria-label="Панель інструментів">
+        <div class="card search">
+            <strong>Пошук документів</strong>
+            <input type="text" id="searchInput" placeholder="Введіть назву документа..." />
+        </div>
+        </aside>
+
+
+        <div class="card">
+          <strong>Швидкий доступ</strong>
+          <div class="tags" style="margin-top:10px">
+            <span class="tag">Посібники</span>
+            <span class="tag">Проекти</span>
+            <span class="tag">Додатки</span>
+            <span class="tag">Презентації</span>
+            <span class="tag">Уроки</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>Рекомендація</strong>
+          <p style="color:var(--muted);margin-top:8px;font-size:0.95rem">Використайте структуровані імена файлів, щоб легко відновлювати архіви. Під час публікації на сайті завантажуйте файли у папку /files/ і замінюйте "#" на реальні шляхи.</p>
+        </div>
+      </aside>
+
+    </div> <!-- .grid end -->
+    <!-- Group: Матеріали педагогів -->
+  <div class="files">
+
+    <h2>Творчі роботи учнів</h2>
+
+    <article class="file-card">
+    <div class="icon">PDF</div>
+    <div class="file-meta">
+        <h3>Результати районного конкурсу з комп'ютерної графіки та анімації 2019</h3>
+        <a href="Протокол.pdf" download>Протокол засідання членів журі (завантажити)</a>
+    </div>
+    </article>
+
+    <!-- 16 фото галерея -->
+    <div class="gallery" style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:20px 0;">
+    <img src="photos/cg1.jpg" alt="" style="width:100%;">
+    <img src="photos/cg2.jpg" alt="" style="width:100%;">
+    <img src="photos/cg3.jpg" alt="" style="width:100%;">
+    <img src="photos/cg4.jpg" alt="" style="width:100%;">
+    <img src="photos/cg5.jpg" alt="" style="width:100%;">
+    <img src="photos/cg6.jpg" alt="" style="width:100%;">
+    <img src="photos/cg7.jpg" alt="" style="width:100%;">
+    <img src="photos/cg8.jpg" alt="" style="width:100%;">
+    <img src="photos/cg9.jpg" alt="" style="width:100%;">
+    <img src="photos/cg10.jpg" alt="" style="width:100%;">
+    <img src="photos/cg11.jpg" alt="" style="width:100%;">
+    <img src="photos/cg12.jpg" alt="" style="width:100%;">
+    <img src="photos/cg13.jpg" alt="" style="width:100%;">
+    <img src="photos/cg14.jpg" alt="" style="width:100%;">
+    <img src="photos/cg15.jpg" alt="" style="width:100%;">
+    <img src="photos/cg16.jpg" alt="" style="width:100%;">
+    </div>
+
+    <p>
+    26 грудня 2017 року було підведено підсумки заочного районного конкурсу з 
+    комп’ютерної графіки та анімації, за результатами якого серед переможців є 
+    і учні Широківської СЗШ №2.
+    </p>
+
+    <ul>
+    <li><b>Молодша вікова група (до 10 років), комп’ютерна графіка:</b><br>
+        ІІ місце – Ємельова Анастасія (4-А), «Новорічна свічка».<br>
+        ІІІ місце – Тацій Сергій (4-А), «Будиночок на галявині».<br>
+        ІІІ місце – Тацій Сергій (4-А), номінація «Фотоколаж», робота «А ось і Я».
+    </li>
+    <li><b>Середня група (10–13 років), комп’ютерна графіка:</b><br>
+        І місце – Устіч Андрій (4-А), «Космос».
+    </li>
+    <li><b>Старша група (14–18 років), комп’ютерна графіка:</b><br>
+        І місце – Корніяшик Каріна (9-Б), «Весняна Річка».
+    </li>
+    </ul>
+
+    <p><b>ВІТАЄМО ПЕРЕМОЖЦІВ!</b></p>
+
+    <!-- 4 фото -->
+    <div class="gallery" style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:20px 0;">
+    <img src="photos/win1.jpg" style="width:100%;">
+    <img src="photos/win2.jpg" style="width:100%;">
+    <img src="photos/win3.jpg" style="width:100%;">
+    <img src="photos/win4.jpg" style="width:100%;">
+    </div>
+
+    <h3>Колаж "Світ позитиву"</h3>
+
+    <!-- 10 фото -->
+    <div class="gallery" style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin:20px 0;">
+    <img src="photos/poz1.jpg" style="width:100%;">
+    <img src="photos/poz2.jpg" style="width:100%;">
+    <img src="photos/poz3.jpg" style="width:100%;">
+    <img src="photos/poz4.jpg" style="width:100%;">
+    <img src="photos/poz5.jpg" style="width:100%;">
+    <img src="photos/poz6.jpg" style="width:100%;">
+    <img src="photos/poz7.jpg" style="width:100%;">
+    <img src="photos/poz8.jpg" style="width:100%;">
+    <img src="photos/poz9.jpg" style="width:100%;">
+    <img src="photos/poz10.jpg" style="width:100%;">
+    </div>
+
+    <!-- Далі всі файли у списку -->
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Проблеми_молоді.ppt" download>Проблеми молоді — Полторак Р. (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Шкідливі_звички.ppt" download>Шкідливі звички — Кулеша В., Бондар (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Крохмаль.ppt" download>Виявлення крохмалю в харчових продуктах (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="ЕТИКЕТ.ppt" download>Етикет (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Етикет_листування.ppt" download>Етикет в електронному листуванні (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Менделєєв.ppt" download>Життя і діяльність Менделєєва (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Сірники.ppt" download>Сірники у житті людини (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Хімія_життя.ppt" download>Хімія в житті людини (завантажити)</a>
+    </div>
+    </article>
+ 
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Цукор.ppt" download>Цукор — біле золото (завантажити)</a>
+    </div>
+    </article>
+
+    <h3>Творчі роботи учнів на районний семінар учителів хімії</h3>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Нафта.ppt" download>Нафта (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Органічні_сполуки.ppt" download>Органічні сполуки (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Органічні_сполуки_в_побуті.ppt" download>Органічні сполуки в побуті (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Природний_газ.ppt" download>Природний і супутній нафтові гази (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">DOC</div>
+    <div class="file-meta">
+        <a href="Подвиг_народу.doc" download>Безсмертний подвиг українського народу — Тіщенко Дарина (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Виготовлення_скла.ppt" download>Виготовлення скла (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Географія_України.ppt" download>Географія України (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Чорна_металургія.ppt" download>Історія розвитку чорної металургії (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Блок.ppt" download>Життя та творчість Блока — Андрух А. (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Парниковий_ефект.pptx" download>Парниковий ефект — Кубайчук Д. (завантажити)</a>
+    </div>
+    </article>
+
+    <article class="file-card">
+    <div class="icon">PPT</div>
+    <div class="file-meta">
+        <a href="Екологія_України.ppt" download>Екологічні проблеми України — Яводчак О. (завантажити)</a>
+    </div>
+    </article>
+</div>
+
+
+
+  </main>
+
+  <footer>
+    © 2025 Широківська школа №2. Усі права захищені.
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const fileCards = document.querySelectorAll('.file-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      fileCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

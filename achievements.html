@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Методичні Матеріали вчителів</title>
+    <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================
+       Колірна гамма:
+    ======================== */
+    :root{
+      --accent-1: #C3DCF0;
+      --accent-2: #91B9C1;
+      --accent-3: #D8DDE1;
+      --accent-4: #C19569;
+      --dark:     #090401;
+      --muted:    #6b6f74;
+      --glass:    rgba(255,255,255,0.65);
+      --shadow:   0 12px 30px rgba(9,4,1,0.06);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Montserrat", "Poppins", sans-serif;
+      background: linear-gradient(180deg, #FBFDFF 0%, #F3F7FB 100%);
+      color: var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* container */
+    .container{
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+   
+    /* Hero */
+    .hero{
+      padding:36px 24px;
+      text-align:center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      margin:20px;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(9,4,1,0.06);
+      position:relative;
+    }
+    .hero h2{font-size:2rem;margin:0 0 8px;font-weight:800}
+    .hero p{margin:0;color:var(--muted);font-size:1rem}
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns:  360px 1fr;
+      gap:20px;
+      margin-top:22px;
+      padding:0 20px;
+}
+
+
+    /* Left: files listing */
+    .files {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .group-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:var(--dark);
+      margin:6px 0;
+    }
+    .group-title .dot{
+      width:12px;height:12px;background:linear-gradient(90deg,var(--accent-4),var(--accent-2));border-radius:4px;
+    }
+
+    /* card */
+    .file-card{
+      background: linear-gradient(180deg,#FFFFFF, #FBFBFD);
+      padding:14px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(9,4,1,0.04);
+      border: 1px solid rgba(9,4,1,0.03);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .file-card:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(9,4,1,0.07)}
+    .icon{
+      width:56px;height:56px;border-radius:10px;flex:0 0 56px;display:flex;align-items:center;justify-content:center;font-weight:800;
+      background:linear-gradient(135deg,var(--accent-1),var(--accent-3));
+      color:var(--dark);
+      box-shadow: inset 0 -4px 8px rgba(0,0,0,0.03);
+    }
+    .file-meta{flex:1}
+    .file-meta h3{margin:0;font-size:1rem;font-weight:800}
+    .file-meta p{margin:6px 0 0 0;color:var(--muted);font-size:0.95rem}
+    .file-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:800;text-decoration:none;
+    }
+    .btn-download{
+      background: linear-gradient(90deg,var(--accent-4), var(--accent-2));
+      color:#fff;
+      box-shadow: 0 10px 26px rgba(193,149,105,0.12);
+      font-size:0.95rem;
+    }
+    .btn-secondary{
+      background:transparent;border:1px solid rgba(9,4,1,0.06);color:var(--dark);font-weight:700;padding:8px 10px;border-radius:10px;font-size:0.9rem;
+    }
+    .file-size{font-size:0.85rem;color:var(--muted);margin-top:6px;text-align:right}
+
+    /* Right column (sidebar) */
+    .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start; /* вирівнює sidebar по верху контенту */
+}
+
+    .card{
+      padding:14px;border-radius:12px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(9,4,1,0.03)
+    }
+    .search input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(9,4,1,0.06);font-size:0.95rem}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{padding:6px 10px;border-radius:999px;background:var(--accent-3);font-weight:700;font-size:0.85rem}
+
+    /* footer */
+    footer{
+      margin-top:30px;padding:18px;background: linear-gradient(90deg,var(--accent-2), #E6EEF1);color: var(--dark);border-top-left-radius:14px;border-top-right-radius:14px;text-align:center;
+      box-shadow: 0 -6px 20px rgba(9,4,1,0.03);
+    }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr}
+      .sidebar{position:static}
+    }
+    @media (max-width:640px){
+      .hero h2{font-size:1.4rem}
+      .icon{width:48px;height:48px;flex:0 0 48px}
+      .file-card{padding:12px}
+      .btn-download{padding:7px 10px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Навігація -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">Шкільний портал</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Головна</a></li>
+
+        <!-- Інформація -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Інформація</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zagalni_vidomosti.html">Загальні відомості</a></li>
+            <li><a class="dropdown-item" href="teachers.html">Педагогічний колектив</a></li>
+            <li><a class="dropdown-item" href="experiment.html">Експериментальна діяльність школи</a></li>
+            <li><a class="dropdown-item" href="materials.html">Методичні матеріали вчителів</a></li>
+            <li><a class="dropdown-item" href="activity.html">Діяльність закладу</a></li>
+            <li><a class="dropdown-item" href="museum.html">Шкільний музей</a></li>
+            <li><a class="dropdown-item" href="library.html">Шкільна бібліотека</a></li>
+          </ul>
+        </li>
+
+        <!-- Виховна діяльність -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Виховна діяльність</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="vikhovna.html">Виховна робота школи</a></li>
+            <li><a class="dropdown-item" href="pozaklasna.html">Позакласна робота</a></li>
+            <li><a class="dropdown-item" href="samovryaduvannya.html">Самоврядування</a></li>
+            <li><a class="dropdown-item" href="achievements.html">Наші досягнення</a></li>
+            <li><a class="dropdown-item" href="tvorchi.html">Творчі роботи учнів</a></li>
+            <li><a class="dropdown-item" href="projects.html">Міжнародні проекти</a></li>
+          </ul>
+        </li>
+
+        <!-- Безпека -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Безпека</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="buling.html">Протидія та попередження булінгу</a></li>
+            <li><a class="dropdown-item" href="safety.html">Охорона праці</a></li>
+            <li><a class="dropdown-item" href="internet.html">Безпека в Інтернеті</a></li>
+            <li><a class="dropdown-item" href="rules.html">Правила поведінки, які можуть вберегти життя</a></li>
+          </ul>
+        </li>
+
+        <!-- Освітній процес -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Освітній процес</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="zno.html">ЗНО / НМТ</a></li>
+            <li><a class="dropdown-item" href="distance.html">Дистанційне навчання</a></li>
+            <li><a class="dropdown-item" href="network.html">Мережа освітнього закладу</a></li>
+            <li><a class="dropdown-item" href="selfedu.html">Самоосвіта</a></li>
+          </ul>
+        </li>
+
+        <!-- Для батьків -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Для батьків</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="parents.html">Інформація для батьків</a></li>
+            <li><a class="dropdown-item" href="graduates.html">Інформація для випускників</a></li>
+            <li><a class="dropdown-item" href="nutrition.html">Харчування учнів ліцею</a></li>
+            <li><a class="dropdown-item" href="psychologist.html">Сторінка психолога</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Контакти</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <!-- HERO -->
+  <main class="container">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Досягнення учнів</h2>
+      <p>Добірка досягнень, активностей, фото, додатків, олімпіад та описів, що стосуються наших досягнент. Завантажуйте документи або використовуйте їх як шаблони.</p>
+    </section>
+
+
+<!-- Конкурс комп'ютерного макетування та верстання 2019 -->
+<article class="file-card">
+  <div class="icon">EVENT</div>
+  <div class="file-meta">
+    <h3>Конкурс комп'ютерного макетування та верстання (12.02.2019)</h3>
+    <p>З метою розвитку шкільних медіа в Україні та виявлення нових журналістських талантів і оволодіння досвідом у галузі журналістики та інформаційних технологій на базі комунального закладу позашкільної освіти «Широківський Центр дитячої творчості» був проведений конкурс комп’ютерного макетування та верстання. В конкурсі взяли участь 22 учні з закладів освіти Широківської ОТГ: Широківська школа №2 ЗСО, Широківська школа №1 ЗСО та Шестірнянська школа ЗСО.</p>
+    <p>Конкурс проводився в номінаціях: «Журналістська робота», «Фото», «Газета». Учасники поділялися на 2 категорії за віком: 1 категорія – до 13 років; 2 категорія – від 14 до 18 років. Роботи оцінювалися журі за десятибальною шкалою: розуміння сучасної проблематики, самобутність доробку, розкриття теми, грамотність викладу. Призерами визначено 17 учасників, роботи будуть направлені до Дніпропетровського центру НТТ та ІТ учнівської молоді для участі в обласному конкурсі.</p>
+    <p>Серед переможців Широківської школи №2:</p>
+    <ul>
+      <li>І місце – Устименко Яна, 5-Б клас, фоторепортаж «Буковель – перлина Карпат»</li>
+      <li>І місце – Бочукіна Яна та Мирошниченко Анна, 9-Б клас, газета «Таланти школи»</li>
+      <li>І місце – Корніяшик Каріна, 10 клас, газета «Цікава логіка»</li>
+      <li>І місце – Вірко Альона, 11 клас, газета «Кіно в Україні»</li>
+      <li>ІІ місце – Хараїм Катерина, 9-А клас, фоторепортаж «Життя собаки Ради в лісах тундри»</li>
+      <li>ІІІ місце – Закітна Тетяна, 9-А клас, фоторепортаж «Я і осінь»</li>
+      <li>ІІІ місце – Попруга Денис, 9-Б клас, газета «Мій улюблений актор»</li>
+      <li>ІІІ місце – Радковська Дар’я, 9-Б клас, фоторепортаж «Природа рідного краю»</li>
+      <li>ІІІ місце – Корніяшик Каріна, 10 клас, фоторепортаж «Бабусині квіти»</li>
+    </ul>
+  </div>
+  <div class="file-actions">
+    <a class="btn btn-download" href="files/Протокол_вестання_та_макетування_2019.pdf" download>Download протокол 2019</a>
+    <div class="file-size">173.3 KB</div>
+  </div>
+</article>
+
+<!-- ВІТАЄМО ПЕРЕМОЖЦІВ ОБЛАСНОГО КОНКУРСУ -->
+<article class="file-card">
+  <div class="icon">AWARD</div>
+  <div class="file-meta">
+    <h3>Обласний конкурс комп'ютерного макетування та верстання</h3>
+    <p>Номінація "Фото" – ІІІ місце: Корніяшик Каріна, 9-Б клас</p>
+    <p>Номінація "Газета" – ІІІ місце: Ізьянов Ілля, 8-А клас</p>
+    <p>Додатково результати дистанційної олімпіади з російської мови: переможець – Ведмідська Дарина, 9-Б клас</p>
+    <p>26 грудня 2017 року підведено підсумки заочного районного конкурсу з комп’ютерної графіки та анімації. Переможці:</p>
+    <ul>
+      <li>Молодша група (до 10 років) – ІІ місце: Ємельова Анастасія, 4-А клас, «Новорічна свічка»</li>
+      <li>Молодша група – ІІІ місце: Тацій Сергій, 4-А клас, «Будиночок на галявині»</li>
+      <li>Молодша група (Фотоколаж) – ІІІ місце: Тацій Сергій, «А ось і Я»</li>
+      <li>Середня група (10–13 років) – І місце: Устіч Андрій, 4-А клас, «Космос»</li>
+      <li>Старша група (14–18 років) – І місце: Корніяшик Каріна, 9-Б клас, «Весняна Річка»</li>
+    </ul>
+  </div>
+
+</article>
+
+<!-- Всеукраїнська олімпіада з інформатики -->
+<article class="file-card">
+  <div class="icon">OLYMP</div>
+  <div class="file-meta">
+    <h3>Всеукраїнська учнівська олімпіада з інформатики (18.10.2017)</h3>
+    <p>У Широківській СЗШ №2 відбувся І етап олімпіади серед учнів 9–11 класів. Участь взяли 10 учнів. Переможці:</p>
+    <ul>
+      <li>І місце – Пляшко Максим, 11 клас</li>
+      <li>ІІ місце – Ващенко Євген, 9-Б клас</li>
+      <li>ІІІ місце – Запецька Марія, 9-А клас</li>
+    </ul>
+    <p>Переможці направляються на ІІ етап районної олімпіади. Вітаємо!</p>
+  </div>
+  
+</article>
+
+<!-- Обласна дистанційна олімпіада з російської мови -->
+<article class="file-card">
+  <div class="icon">AWARD</div>
+  <div class="file-meta">
+    <h3>Обласна дистанційна олімпіада з російської мови</h3>
+    <p>Абсолютний переможець – Ведмідська Дарина, 9-Б клас. Деталі: <a href="http://gymnazylen.blogspot.com/" target="_blank">перейти на сайт ДОКа</a>.</p>
+  </div>
+    <div class="file-actions">
+    <a class="btn btn-download" href="files/Resultados_DOKa_2017.pdf" download>Download результати 2017</a>
+    <div class="file-size">405.5 KB</div>
+  </div>
+</article>
+
+  </div>
+
+
+
+  </main>
+
+  <footer>
+    © 2025 Широківська школа №2. Усі права захищені.
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const fileCards = document.querySelectorAll('.file-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      fileCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
